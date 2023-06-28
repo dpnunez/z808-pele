@@ -16,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 
-// Muita parada do Material3 ainda é experimental, então p cancelar warnings que impedem o build, BASTA USAR O OPTIN
 @OptIn(ExperimentalAnimationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 @Preview
@@ -37,7 +36,7 @@ fun App() {
                     counter += 1;
                 }
             ) {
-                Icon(
+                Icon( 
                     imageVector = Icons.Rounded.Add,
                     contentDescription = "Increment",
                 )
@@ -54,7 +53,7 @@ fun App() {
                     slideInVertically() + fadeIn() with slideOutVertically() + fadeOut()
                 }
             ) { value ->
-                Text("${Customer("java").name}: $value")
+                Text("${VirtualMachine().name}: $value")
             }
         }
     }
