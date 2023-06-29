@@ -1,3 +1,5 @@
+package main;
+
 public class VirtualMachine {
     private final String name;
     private final CPU cpu;

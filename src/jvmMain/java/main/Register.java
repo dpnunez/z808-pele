@@ -1,3 +1,5 @@
+package main;
+
 public class Register {
     private final String name;
     private short value;

@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import main.VirtualMachine
 
 @OptIn(ExperimentalAnimationApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -25,9 +26,11 @@ fun App() {
 
     val vm = VirtualMachine()
 
-    System.out.println(vm.cpu.registers)
+    System.out.println(vm.cpu.instructions)
     vm.cpu.registers.getRegisterByName("AX").value = 23
     System.out.println(vm.cpu.registers)
+    vm.cpu.instructions.getInstructionByOpcode(0x01).execute()
+    vm.cpu.instructions.getInstructionByName("MOV").execute()
 
     Scaffold(
         topBar = {
