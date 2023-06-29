@@ -16,4 +16,8 @@ public class VirtualMachine {
     public String getName() {
         return name;
     }
+
+    public CPU getCPU() {
+        return cpu;
+    }
 }
