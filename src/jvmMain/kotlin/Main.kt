@@ -22,6 +22,13 @@ import androidx.compose.ui.window.application
 fun App() {
     var counter by remember { mutableStateOf(0) }
 
+
+    val vm = VirtualMachine()
+
+    System.out.println(vm.cpu.registers)
+    vm.cpu.registers.getRegisterByName("AX").value = 23
+    System.out.println(vm.cpu.registers)
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
