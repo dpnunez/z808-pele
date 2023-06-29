@@ -1,3 +1,5 @@
+package main;
+
 public class Memory {
     public final int MEMORY_SIZE_BYTES;
     public final int BLOCK_SIZE = 16;
