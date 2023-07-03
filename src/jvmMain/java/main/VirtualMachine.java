@@ -11,8 +11,12 @@ public class VirtualMachine {
         this.name = name;
     }
 
+    public VirtualMachine(Memory m) {
+        this(new CPU(m), m, "z808");
+    }
+
     public VirtualMachine() {
-        this(new CPU(), new Memory(), "z808");
+        this(new Memory());
     }
 
     public String getName() {
@@ -21,5 +25,9 @@ public class VirtualMachine {
 
     public CPU getCPU() {
         return cpu;
+    }
+
+    public Memory getMemory() {
+        return memory;
     }
 }

@@ -22,6 +22,11 @@ public class Registers {
         this.values = regs;
     }
 
+
+    public Register getRegisterByOpcode(Short opcode) {
+        return values.get(opcode);
+    }
+
     public Register getRegisterByName(String name) {
         for (Map.Entry<Short, Register> entry : values.entrySet()) {
             if (entry.getValue().getName().equals(name)) {
