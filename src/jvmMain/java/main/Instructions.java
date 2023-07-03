@@ -1,6 +1,10 @@
 package main;
 
 import instructions.Instruction;
+import instructions.direct.*;
+import instructions.register.*;
+import instructions.imediate.*;
+
 import java.util.HashMap;
 
 public class Instructions {
@@ -8,8 +12,12 @@ public class Instructions {
 
     public Instructions() {
         HashMap<Short, Instruction> i = new HashMap<>();
-        Instruction Mov = new instructions.Mov();
-        i.put(Mov.getOpcode(), Mov);
+        Instruction MOVReg = new MOVRegister();
+        i.put(MOVReg.getOpcode(), MOVReg);
+        Instruction MOVIm = new MOVImediate();
+        i.put(MOVIm.getOpcode(), MOVIm);
+        Instruction MOVDirect = new MOVDirect();
+        i.put(MOVDirect.getOpcode(), MOVDirect);
 
         this.instructions = i;
     }
@@ -19,6 +27,7 @@ public class Instructions {
     }
 
     public Instruction getInstructionByName(String name) {
+        // ToDo: refactor to use get
         for (HashMap.Entry<Short, Instruction> entry : instructions.entrySet()) {
             if (entry.getValue().getName().equals(name)) {
                 return entry.getValue();
