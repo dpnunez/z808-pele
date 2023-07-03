@@ -26,7 +26,7 @@ fun App() {
 
 
     val sb = Sandbox()
-    sb.movDirect()
+    sb.subByRegister();
 
     Scaffold(
         topBar = {

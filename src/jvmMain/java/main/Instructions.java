@@ -18,6 +18,8 @@ public class Instructions {
         i.put(MOVIm.getOpcode(), MOVIm);
         Instruction MOVDirect = new MOVDirect();
         i.put(MOVDirect.getOpcode(), MOVDirect);
+        Instruction SUBReg = new SUBRegister();
+        i.put(SUBReg.getOpcode(), SUBReg);
 
         this.instructions = i;
     }
