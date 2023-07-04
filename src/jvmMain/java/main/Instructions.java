@@ -20,7 +20,8 @@ public class Instructions {
         i.put(MOVDirect.getOpcode(), MOVDirect);
         Instruction SUBReg = new SUBRegister();
         i.put(SUBReg.getOpcode(), SUBReg);
-
+        Instruction MULTReg = new MULTRegister();
+        i.put(MULTReg.getOpcode(), MULTReg);
         this.instructions = i;
     }
 

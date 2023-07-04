@@ -25,12 +25,14 @@ public class Sandbox {
         vm.getCPU().execute("0000000111000010"); // MOV
         System.out.println(vm.getCPU().getRegisters());
     }
+
     public void basicExample() {
         VirtualMachine vm = new VirtualMachine();
         System.out.println(vm.getName());
         System.out.println(vm.getCPU().getRegisters());
         System.out.println(vm.getCPU().getInstructions());
     }
+
     public void subByRegister() {
         VirtualMachine vm = new VirtualMachine();
         Register dx = vm.getCPU().getRegisters().getRegisterByName("DX");
@@ -38,6 +40,16 @@ public class Sandbox {
         dx.setValue((short) 10);
         ax.setValue((short) 19);
         vm.getCPU().execute("0010101111000010");
+        System.out.println(vm.getCPU().getRegisters());
+    }
+
+    public void MULTRegister() {
+        VirtualMachine vm = new VirtualMachine();
+        Register dx = vm.getCPU().getRegisters().getRegisterByName("DX");
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        dx.setValue((short) 10);
+        ax.setValue((short) 5);
+        vm.getCPU().execute("1111011111110000");
         System.out.println(vm.getCPU().getRegisters());
     }
 }
