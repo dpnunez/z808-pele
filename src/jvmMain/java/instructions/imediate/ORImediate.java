@@ -1,23 +1,21 @@
-package instructions.register;
+package instructions.imediate;
 
 import instructions.Instruction;
 import main.Memory;
 import main.Register;
 import main.Registers;
 
-public class ORRegister extends Instruction {
-
-    public ORRegister() {
-        super("OR-Register", (short) 0x0B, 2);
+public class ORImediate extends Instruction {
+    public ORImediate() {
+        super("OR-Imediate", (short) 0x0C, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         Register regDestination = registers.getRegisterByName("AX");
+        short valueSource = regDestination.getValue();
+        regDestination.setValue(op);
         Register regFlag = registers.getFlagRegister();
 
-        short valueSource = registers.getRegisterByOpcode(op).getValue();
-        short valueDestination = regDestination.getValue();
-
-        short result = (short) (valueDestination | valueSource);
+        short result = (short) (op | valueSource);
         short flags = (short) 0x0000;
 
         regDestination.setValue(result);
