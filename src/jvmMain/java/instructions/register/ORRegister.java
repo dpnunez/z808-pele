@@ -17,20 +17,31 @@ public class ORRegister extends Instruction {
         short valueSource = registers.getRegisterByOpcode(op).getValue();
         short valueDestination = regDestination.getValue();
 
-        short result = (short) (valueDestination | valueSource);
+        int result = valueDestination | valueSource;
         short flags = (short) 0x0000;
 
-        regDestination.setValue(result);
+        regDestination.setValue((short) result);
 
-        // flags CF,PF,ZF,SF,OF
-
+        // OF
+        if ((result - (short) result) != 0) {
+            flags += 0x1000; //1*2^12 decimal = 4096 OVERFLOW
+            flags += 0x0001; //1*2^0 decimal = 1 se deu OV é pq vai-um
+        }
         // SF
-        if (result < 0) {
-            flags += 0x0200; // decimal = 512
+        if ((short)result < 0) {
+            flags += 0x0200; //1*2^9 decimal = 512
         }
         // ZF
-        if (result == 0) {
-            flags += 0x0200; // decimal = 512
+        if ((short)result == 0) {
+            flags += 0x0100; //1*2^8 decimal = 256
+        }
+        // PF
+        if (regDestination.getBitParity())  {
+            flags += 0x0040; //1*2^6 decimal = 64
+        }
+        // CF
+        if ((short)result == 0) {
+            flags += 0x0001; //1*2^0 decimal = 1
         }
 
         regFlag.setValue(flags);
