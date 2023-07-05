@@ -10,8 +10,7 @@ public class ORDirect extends Instruction {
         super("OR-Direct", (short) 0x0D, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
-        int memoryIndex = registers.getRegisterByOpcode(op).getValue();
-        short value = memory.getCell(memoryIndex);
+        short value = memory.getCell(op);
         Register regDestination = registers.getRegisterByName("AX");
         Register regFlag = registers.getFlagRegister();
 
