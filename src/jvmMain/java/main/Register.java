@@ -28,4 +28,15 @@ public class Register {
     public void setValue(short v) {
         value = v;
     }
+
+    public boolean getBitParity() {
+        String valueInBinary = Integer.toBinaryString(value);
+        int count = 0;
+        for (int i = 0; i < valueInBinary.length(); i++) {
+            if (valueInBinary.charAt(i) == '1') {
+                count++;
+            }
+        }
+        return count % 2 == 0;
+    }
 }

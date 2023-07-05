@@ -30,4 +30,39 @@ public class Sandbox {
         System.out.println(vm.getCPU().getRegisters());
         System.out.println(vm.getCPU().getInstructions());
     }
+    public void subByRegister() {
+        VirtualMachine vm = new VirtualMachine();
+        Register dx = vm.getCPU().getRegisters().getRegisterByName("DX");
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        dx.setValue((short) 10);
+        ax.setValue((short) 19);
+        vm.getCPU().execute("0010101111000010");
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void orByRegister() {
+        VirtualMachine vm = new VirtualMachine();
+        Register dx = vm.getCPU().getRegisters().getRegisterByName("DX");
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 6);
+        dx.setValue((short) 10);
+        // 0BC0
+        //vm.getCPU().execute("0000101111000000");
+        // 0BC2
+        vm.getCPU().execute("0000101111000010");
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void orImediate() {
+        VirtualMachine vm = new VirtualMachine();
+        System.out.println(vm.getCPU().getRegisters());
+        vm.getCPU().execute("000011000000000000000011"); // 0C 3 em binario
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void orDirect() {
+        VirtualMachine vm = new VirtualMachine();
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 10);
+        vm.getMemory().setCell(10, (short) 6);
+        vm.getCPU().execute("000011010000000011000000");
+        System.out.println(vm.getCPU().getRegisters());
+    }
 }

@@ -36,6 +36,10 @@ public class Registers {
         return null;
     }
 
+    public Register getFlagRegister () {
+        return getRegisterByName("SR");
+    }
+
     public Map<Short, Register> getRegisters() {
         return values;
     }
