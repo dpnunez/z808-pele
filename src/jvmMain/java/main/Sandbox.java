@@ -62,8 +62,8 @@ public class Sandbox {
         VirtualMachine vm = new VirtualMachine();
         Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
         ax.setValue((short) 10);
-        vm.getMemory().setCell(10, (short) 6);
-        vm.getCPU().execute("000011010000000011000000");
+        vm.getMemory().setCell(1, (short) 6);
+        vm.getCPU().execute("000011010000000000000001"); // Acessando a celula 1 da memoria
         System.out.println(vm.getCPU().getRegisters());
     }
 }
