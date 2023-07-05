@@ -17,7 +17,7 @@ public class MULTRegister extends Instruction {
 
         short valueDestinationAX = regDestinationAX.getValue();
 
-        int result = valueDestinationAX * valueDestinationAX; // AX * AX
+        long result = (short) valueDestinationAX * (short) valueDestinationAX; // AX * AX
         short resultAX = (short) (result); // Primeros 16 bits da multiplicação vão para o AX
         short resultDX = (short) 0x0000; // Se não der overflow recebe 0
         if (result != resultAX) { // Teste do overflow
@@ -41,9 +41,10 @@ public class MULTRegister extends Instruction {
         if (regDestinationAX.getBitParity()) {
             flags += 0x0040; // 1*2^6 decimal = 64
         }
-        // OF
-        if (resultDX != 0x0000) {
+        // OF e CF
+        if (result > 1073741823 || result < -1073741824) {
             flags += 0x1000; // 1*2^12 decimal = 4.096
+            flags += 0x0000; // 1*2^00 decimal = 0
         }
 
         regFlag.setValue(flags);

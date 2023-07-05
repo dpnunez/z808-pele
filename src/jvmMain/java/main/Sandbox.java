@@ -48,7 +48,7 @@ public class Sandbox {
         Register dx = vm.getCPU().getRegisters().getRegisterByName("DX");
         Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
         dx.setValue((short) 10);
-        ax.setValue((short) 5);
+        ax.setValue((short) 32767);
         vm.getCPU().execute("1111011111110000");
         System.out.println(vm.getCPU().getRegisters());
     }

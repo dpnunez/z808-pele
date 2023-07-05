@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21b21bf7-9aae-45b6-8e8c-3e46ba287ae6" name="Changes" comment="criação das classes de SUB.">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_07_2023_15_54__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_07_2023_15_54__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_06_2023_13_46__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_06_2023_13_46__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/MULTRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/MULTRegister.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jvmMain/java/main/Instructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/main/Instructions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jvmMain/java/main/Sandbox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/main/Sandbox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/Main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,6 +132,8 @@
       <workItem from="1688487149072" duration="82000" />
       <workItem from="1688487246130" duration="4830000" />
       <workItem from="1688512313337" duration="3000" />
+      <workItem from="1688590427872" duration="2089000" />
+      <workItem from="1688592553334" duration="2823000" />
     </task>
     <task id="LOCAL-00001" summary="feat: add initial class relations">
       <option name="closed" value="true" />
@@ -206,6 +206,11 @@
           <properties class="java.lang.NoClassDefFoundError" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/jvmMain/java/instructions/register/MULTRegister.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -214,6 +219,6 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/z808_pele$MainKt.ic" NAME="MainKt Coverage Results" MODIFIED="1688497266394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/z808_pele$MainKt.ic" NAME="MainKt Coverage Results" MODIFIED="1688594322129" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

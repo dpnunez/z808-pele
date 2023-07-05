@@ -22,6 +22,7 @@ public class Instructions {
         i.put(SUBReg.getOpcode(), SUBReg);
         Instruction MULTReg = new MULTRegister();
         i.put(MULTReg.getOpcode(), MULTReg);
+
         this.instructions = i;
     }
 
