@@ -15,12 +15,11 @@ public class SUBRegister extends Instruction {
         Register regDestination = registers.getRegisterByName("AX");
         Register regFlag = registers.getFlagRegister();
 
-
-
         short valueSource = regSource.getValue();
         short valueDestination = regDestination.getValue();
 
         short result = (short) (valueDestination - valueSource);
+        int resultForOverflow = (int) valueDestination - (int) valueSource;
 
         regDestination.setValue(result);
 
@@ -33,13 +32,40 @@ public class SUBRegister extends Instruction {
 
         if (regDestination.getBitParity()) {
             //setando a flag PF
-            regFlag.setValue((short)(regFlag.getValue() | 0x20));
+            regFlag.setValue((short)(regFlag.getValue() | 0x40));
         }
         else {
             //setando a flag PF
-            regFlag.setValue((short)(regFlag.getValue() & 0xFFDF));
+            regFlag.setValue((short)(regFlag.getValue() & 0xFFBF));
         }
 
+        if (result == 0) {
+            //setando a flag ZF
+            regFlag.setValue((short)(regFlag.getValue() | 0x100));
+        }
+        else {
+            //setando a flag ZF
+            regFlag.setValue((short)(regFlag.getValue() & 0xFEFF));
+        }
 
+        //ToDo: arrumar o overflow
+       if (resultForOverflow >= 0) {
+            if (resultForOverflow >= 65536) {
+                //setando a flag OF
+                regFlag.setValue((short) (regFlag.getValue() | 0x1000));
+            } else {
+                //setando a flag OF
+                regFlag.setValue((short) (regFlag.getValue() & 0xEFFF));
+            }
+        }
+       else {
+            if (resultForOverflow < -65536) {
+                //setando a flag OF
+                regFlag.setValue((short) (regFlag.getValue() | 0x1000));
+            } else {
+                //setando a flag OF
+                regFlag.setValue((short) (regFlag.getValue() & 0xEFFF));
+            }
+        }
     }
 }
