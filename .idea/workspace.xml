@@ -10,6 +10,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/ORRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/ORRegister.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jvmMain/java/main/Instructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/main/Instructions.java" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/src/jvmMain/java/main/Sandbox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/main/Sandbox.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -168,7 +169,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="feature/initial_relations" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
