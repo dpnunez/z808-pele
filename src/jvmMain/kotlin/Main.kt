@@ -26,7 +26,7 @@ fun App() {
 
 
     val sb = Sandbox()
-    sb.orDirect();
+    sb.addImediate();
 
     Scaffold(
         topBar = {
