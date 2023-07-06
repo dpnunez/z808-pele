@@ -78,7 +78,7 @@ public class Sandbox {
         VirtualMachine vm = new VirtualMachine();
         Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
         ax.setValue((short) 60);
-        vm.getCPU().execute("0000010000111100"); //
+        vm.getCPU().execute("000001000000000000111100"); //
         System.out.println(vm.getCPU().getRegisters());
     }
     public void addDirect() {
