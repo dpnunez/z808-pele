@@ -19,53 +19,32 @@ public class SUBRegister extends Instruction {
         short valueDestination = regDestination.getValue();
 
         short result = (short) (valueDestination - valueSource);
-        int resultForOverflow = (int) valueDestination - (int) valueSource;
+        short flags = 0x0000;
 
         regDestination.setValue(result);
 
         if (result < 0) {
             //setando a flag SF
-            // ToDo: verificar como identificar o carry e o borrow
-            regFlag.setValue((short)(regFlag.getValue() | 0x01));
-            // ToDo: conferir com o ferrugem o resultado de AX
+            flags += 0x0200;
         }
 
         if (regDestination.getBitParity()) {
             //setando a flag PF
-            regFlag.setValue((short)(regFlag.getValue() | 0x40));
-        }
-        else {
-            //setando a flag PF
-            regFlag.setValue((short)(regFlag.getValue() & 0xFFBF));
+            flags += 0x0040;
         }
 
         if (result == 0) {
             //setando a flag ZF
-            regFlag.setValue((short)(regFlag.getValue() | 0x100));
-        }
-        else {
-            //setando a flag ZF
-            regFlag.setValue((short)(regFlag.getValue() & 0xFEFF));
+            flags += 0x0100;
         }
 
-        //ToDo: arrumar o overflow
-       if (resultForOverflow >= 0) {
-            if (resultForOverflow >= 65536) {
-                //setando a flag OF
-                regFlag.setValue((short) (regFlag.getValue() | 0x1000));
-            } else {
-                //setando a flag OF
-                regFlag.setValue((short) (regFlag.getValue() & 0xEFFF));
-            }
+        if (regDestination.getValue() < -16384 || regDestination.getValue() > 16384) {
+            //setando a flag OF
+            flags += 0x1000;
+            //setando a flag CF
+            flags += 0x01;
         }
-       else {
-            if (resultForOverflow < -65536) {
-                //setando a flag OF
-                regFlag.setValue((short) (regFlag.getValue() | 0x1000));
-            } else {
-                //setando a flag OF
-                regFlag.setValue((short) (regFlag.getValue() & 0xEFFF));
-            }
-        }
+
+        regFlag.setValue(flags);
     }
 }

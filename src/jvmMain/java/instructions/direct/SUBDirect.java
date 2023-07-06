@@ -10,8 +10,7 @@ public class SUBDirect extends Instruction {
         super("SUB-Direct", (short) 0x25, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
-        int memoryIndex = registers.getRegisterByOpcode(op).getValue();
-        short valueSource = memory.getCell(memoryIndex);
+        short valueSource = memory.getCell(op);
         Register regDestination = registers.getRegisterByName("AX");
         Register regFlag = registers.getFlagRegister();
 
@@ -35,7 +34,12 @@ public class SUBDirect extends Instruction {
             flags += 0x0100;
         }
 
-        //ToDo: como fazer o CF e o OF
+        if (regDestination.getValue() < -16384 || regDestination.getValue() > 16384) {
+            //setando a flag OF
+            flags += 0x1000;
+            //setando a flag CF
+            flags += 0x01;
+        }
 
         regFlag.setValue(flags);
     }

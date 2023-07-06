@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="21b21bf7-9aae-45b6-8e8c-3e46ba287ae6" name="Changes" comment="Overflow">
+    <list default="true" id="21b21bf7-9aae-45b6-8e8c-3e46ba287ae6" name="Changes" comment="SUBDirect&#10;&#10;Faltam o OF e o CF.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/SUBDirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/SUBDirect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/SUBImediate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/SUBImediate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/SUBRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/SUBRegister.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +100,8 @@
       <workItem from="1688424548575" duration="489000" />
       <workItem from="1688425061891" duration="2198000" />
       <workItem from="1688510344564" duration="6966000" />
-      <workItem from="1688521048030" duration="238000" />
+      <workItem from="1688521048030" duration="327000" />
+      <workItem from="1688607150617" duration="1053000" />
     </task>
     <task id="LOCAL-00001" summary="feat: add initial class relations">
       <option name="closed" value="true" />
@@ -132,7 +135,15 @@
       <option name="project" value="LOCAL" />
       <updated>1688515417756</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="SUBDirect&#10;&#10;Faltam o OF e o CF.">
+      <option name="closed" value="true" />
+      <created>1688521360521</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1688521360521</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,7 +182,8 @@
     <MESSAGE value="feat: add z808 registers" />
     <MESSAGE value="criação das classes de SUB." />
     <MESSAGE value="Overflow" />
-    <option name="LAST_COMMIT_MESSAGE" value="Overflow" />
+    <MESSAGE value="SUBDirect&#10;&#10;Faltam o OF e o CF." />
+    <option name="LAST_COMMIT_MESSAGE" value="SUBDirect&#10;&#10;Faltam o OF e o CF." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
