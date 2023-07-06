@@ -36,6 +36,13 @@ public class Instructions {
         i.put(XORIm.getOpcode(), XORIm);
         Instruction XORDirect = new XORDirect();
         i.put(XORDirect.getOpcode(), XORDirect);
+        // AND
+        Instruction ANDReg = new ANDRegister();
+        i.put(ANDReg.getOpcode(), ANDReg);
+        Instruction ANDIm = new ANDImediate();
+        i.put(ANDIm.getOpcode(), ANDIm);
+        Instruction ANDDirect = new ANDDirect();
+        i.put(ANDDirect.getOpcode(), ANDDirect);
 
         this.instructions = i;
     }

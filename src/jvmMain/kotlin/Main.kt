@@ -26,7 +26,7 @@ fun App() {
 
 
     val sb = Sandbox()
-    sb.xorDirect();
+    sb.andDirect();
 
     Scaffold(
         topBar = {
