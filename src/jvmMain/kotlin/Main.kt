@@ -26,7 +26,6 @@ fun App() {
 
 
     val sb = Sandbox()
-    sb.subByRegister();
 
     Scaffold(
         topBar = {
@@ -39,7 +38,7 @@ fun App() {
         floatingActionButton = {
             LargeFloatingActionButton(
                 onClick = {
-                    counter += 1;
+                    counter += 1
                 }
             ) {
                 Icon( 

@@ -40,4 +40,22 @@ public class Sandbox {
         vm.getCPU().execute("0010101111000010");
         System.out.println(vm.getCPU().getRegisters());
     }
+
+    public void DIVRegister(){
+        VirtualMachine vm = new VirtualMachine();
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 0);
+        System.out.println(vm.getCPU().getRegisters());
+        vm.getCPU().execute("1111011111000000");
+        System.out.println(vm.getCPU().getRegisters());
+    }
+
+    public void NOTRegister() {
+        VirtualMachine vm = new VirtualMachine();
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 0xffff);
+        System.out.println(vm.getCPU().getRegisters());
+        vm.getCPU().execute("1111100011000000");
+        System.out.println(vm.getCPU().getRegisters());
+    }
 }
