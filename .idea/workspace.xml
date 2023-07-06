@@ -52,6 +52,8 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="2Rko0gmVlGpIJPDGkxPnjHmG6X3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -67,6 +69,8 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;add&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/powilliam/Studies/danielzinho&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -84,6 +88,27 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="instructions.direct" />
+      <recent name="instructions.imediate" />
+      <recent name="instructions.register" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainKt" />
+      <module name="z808-pele.jvmMain" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Kotlin.MainKt" />
+        <item itemvalue="Kotlin.MainKt" />
+        <item itemvalue="Kotlin.MainKt" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -158,7 +183,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="feature/initial_relations" />
+                        <option value="add" />
                       </list>
                     </value>
                   </entry>
@@ -174,7 +199,9 @@
     <MESSAGE value="feat: add initial class relations" />
     <MESSAGE value="feat: add z808 registers" />
     <MESSAGE value="criação das classes de SUB." />
-    <option name="LAST_COMMIT_MESSAGE" value="criação das classes de SUB." />
+    <MESSAGE value="criação das classes de ADD." />
+    <MESSAGE value="Acrescentação dos zeros a esquerda." />
+    <option name="LAST_COMMIT_MESSAGE" value="Acrescentação dos zeros a esquerda." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

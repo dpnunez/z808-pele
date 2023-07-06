@@ -22,6 +22,18 @@ public class Instructions {
 
         Instruction SUBReg = new SUBRegister();
         i.put(SUBReg.getOpcode(), SUBReg);
+        Instruction ORReg = new ORRegister();
+        i.put(ORReg.getOpcode(), ORReg);
+        Instruction ORIm = new ORImediate();
+        i.put(ORIm.getOpcode(), ORIm);
+        Instruction ORDirect = new ORDirect();
+        i.put(ORDirect.getOpcode(), ORDirect);
+        Instruction ADDReg = new ADDRegister();
+        i.put(ADDReg.getOpcode(), ADDReg);
+        Instruction ADDIm = new ADDImediate();
+        i.put(ADDIm.getOpcode(), ADDIm);
+        Instruction ADDDirect = new ADDDirect();
+        i.put(ADDDirect.getOpcode(), ADDDirect);
 
         Instruction DIVReg = new DIVRegister();
         i.put(DIVReg.getOpcode(), DIVReg);
