@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="21b21bf7-9aae-45b6-8e8c-3e46ba287ae6" name="Changes" comment="criação das classes de SUB.">
+    <list default="true" id="21b21bf7-9aae-45b6-8e8c-3e46ba287ae6" name="Changes" comment="Acrescentação dos zeros a esquerda.">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_06_07_2023_20_20_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_06_07_2023_20_20__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_07_2023_20_21_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_07_2023_20_21_[Changes]1/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_07_2023_20_21__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/ORRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/ORRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/main/Instructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/main/Instructions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jvmMain/java/main/Sandbox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/main/Sandbox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jvmMain/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/Main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +51,8 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="2Rko0gmVlGpIJPDGkxPnjHmG6X3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -62,6 +68,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;add&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/powilliam/Studies/danielzinho&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -97,6 +104,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Kotlin.MainKt" />
+        <item itemvalue="Kotlin.MainKt" />
+        <item itemvalue="Kotlin.MainKt" />
       </list>
     </recent_temporary>
   </component>
@@ -119,6 +128,7 @@
       <workItem from="1688424481452" duration="9000" />
       <workItem from="1688424548575" duration="489000" />
       <workItem from="1688425061891" duration="2198000" />
+      <workItem from="1688591483449" duration="5831000" />
     </task>
     <task id="LOCAL-00001" summary="feat: add initial class relations">
       <option name="closed" value="true" />
@@ -166,7 +176,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="add" />
                       </list>
                     </value>
                   </entry>
@@ -182,7 +192,9 @@
     <MESSAGE value="feat: add initial class relations" />
     <MESSAGE value="feat: add z808 registers" />
     <MESSAGE value="criação das classes de SUB." />
-    <option name="LAST_COMMIT_MESSAGE" value="criação das classes de SUB." />
+    <MESSAGE value="criação das classes de ADD." />
+    <MESSAGE value="Acrescentação dos zeros a esquerda." />
+    <option name="LAST_COMMIT_MESSAGE" value="Acrescentação dos zeros a esquerda." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

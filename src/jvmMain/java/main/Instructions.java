@@ -26,6 +26,12 @@ public class Instructions {
         i.put(ORIm.getOpcode(), ORIm);
         Instruction ORDirect = new ORDirect();
         i.put(ORDirect.getOpcode(), ORDirect);
+        Instruction ADDReg = new ADDRegister();
+        i.put(ADDReg.getOpcode(), ADDReg);
+        Instruction ADDIm = new ADDImediate();
+        i.put(ADDIm.getOpcode(), ADDIm);
+        Instruction ADDDirect = new ADDDirect();
+        i.put(ADDDirect.getOpcode(), ADDDirect);
 
         this.instructions = i;
     }
