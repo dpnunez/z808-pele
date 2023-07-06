@@ -65,4 +65,33 @@ public class Sandbox {
         vm.getCPU().execute("000011010000000000000001"); // Acessando a celula 1 da memoria
         System.out.println(vm.getCPU().getRegisters());
     }
+    public void xorByRegister() {
+        VirtualMachine vm = new VirtualMachine();
+        Register dx = vm.getCPU().getRegisters().getRegisterByName("DX");
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 6);
+        dx.setValue((short) 10);
+        System.out.println(vm.getCPU().getRegisters());
+        // 33C0
+        //vm.getCPU().execute("0011001111000000");
+        // 33C2
+        vm.getCPU().execute("0011001111000010");
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void xorImediate() {
+        VirtualMachine vm = new VirtualMachine();
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 6);
+        System.out.println(vm.getCPU().getRegisters());
+        vm.getCPU().execute("001101010000000000001010"); // 0C 10 em binario
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void xorDirect() {
+        VirtualMachine vm = new VirtualMachine();
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 10);
+        vm.getMemory().setCell(1, (short) 6);
+        vm.getCPU().execute("001101010000000000000001");
+        System.out.println(vm.getCPU().getRegisters());
+    }
 }
