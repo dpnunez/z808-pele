@@ -8,15 +8,13 @@ import main.Registers;
 public class MOVDirect extends Instruction {
 
         public MOVDirect() {
-            super("MOV-Direct", (short) 0x03, 3);
+            super("MOV-Direct", (short) 0x06, 3);
         }
         public void execute(Registers registers, Memory memory, Short op) {
             // op is a register id
             // value in register is a cell position in memory
 
-            Register regPointer = registers.getRegisterByOpcode(op);
-            int memoryIndex = regPointer.getValue();
-            int value = memory.getCell(memoryIndex);
+            int value = memory.getCell(op);
             Register regDestination = registers.getRegisterByName("AX");
             regDestination.setValue((short) value);
         }

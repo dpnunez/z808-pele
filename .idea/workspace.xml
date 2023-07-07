@@ -47,6 +47,8 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="2Rko0gmVlGpIJPDGkxPnjHmG6X3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -56,26 +58,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "/Users/powilliam/Studies/danielzinho",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;add&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/powilliam/Studies/danielzinho&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -96,6 +99,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.MainKt" />
+        <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Kotlin.MainKt" />
       </list>
     </recent_temporary>
@@ -119,9 +124,13 @@
       <workItem from="1688424481452" duration="9000" />
       <workItem from="1688424548575" duration="489000" />
       <workItem from="1688425061891" duration="2198000" />
+<<<<<<< HEAD
       <workItem from="1688510344564" duration="6966000" />
       <workItem from="1688521048030" duration="327000" />
       <workItem from="1688607150617" duration="1053000" />
+=======
+      <workItem from="1688591483449" duration="5831000" />
+>>>>>>> main
     </task>
     <task id="LOCAL-00001" summary="feat: add initial class relations">
       <option name="closed" value="true" />
@@ -185,7 +194,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="feature/initial_relations" />
+                        <option value="add" />
                       </list>
                     </value>
                   </entry>
@@ -201,9 +210,15 @@
     <MESSAGE value="feat: add initial class relations" />
     <MESSAGE value="feat: add z808 registers" />
     <MESSAGE value="criação das classes de SUB." />
+<<<<<<< HEAD
     <MESSAGE value="Overflow" />
     <MESSAGE value="SUBDirect&#10;&#10;Faltam o OF e o CF." />
     <option name="LAST_COMMIT_MESSAGE" value="SUBDirect&#10;&#10;Faltam o OF e o CF." />
+=======
+    <MESSAGE value="criação das classes de ADD." />
+    <MESSAGE value="Acrescentação dos zeros a esquerda." />
+    <option name="LAST_COMMIT_MESSAGE" value="Acrescentação dos zeros a esquerda." />
+>>>>>>> main
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

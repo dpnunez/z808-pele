@@ -4,9 +4,8 @@ public class Sandbox {
     public void movDirect() {
         VirtualMachine vm = new VirtualMachine();
         Register dx = vm.getCPU().getRegisters().getRegisterByName("DX");
-        dx.setValue((short) 1);
-        vm.getMemory().setCell(1, (short) 43);
-        vm.getCPU().execute("000000110000000011000010"); // MOV Direct has 2 bytes operand
+        vm.getMemory().setCell(1, (short) 233);                 // Setting cell indexed by 1
+        vm.getCPU().execute("000000110000000000000001"); // MOV Direct pointing to cell indexed by 1
         System.out.println(vm.getCPU().getRegisters());
     }
 
@@ -62,8 +61,32 @@ public class Sandbox {
         VirtualMachine vm = new VirtualMachine();
         Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
         ax.setValue((short) 10);
-        vm.getMemory().setCell(10, (short) 6);
-        vm.getCPU().execute("000011010000000011000000");
+        vm.getMemory().setCell(1, (short) 6);
+        vm.getCPU().execute("000011010000000000000001"); // Acessando a celula 1 da memoria
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void addRegister() {
+        VirtualMachine vm = new VirtualMachine();
+        Register dx = vm.getCPU().getRegisters().getRegisterByName("DX");
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        dx.setValue((short) 1);
+        ax.setValue((short) 16384);
+        vm.getCPU().execute("0000001111000010"); // instrução em hex = 03 C2
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void addImediate() {
+        VirtualMachine vm = new VirtualMachine();
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 60);
+        vm.getCPU().execute("000001000000000000111100"); //
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void addDirect() {
+        VirtualMachine vm = new VirtualMachine();
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 16384);
+        vm.getMemory().setCell(1, (short) 1);
+        vm.getCPU().execute("000001010000000000000001");
         System.out.println(vm.getCPU().getRegisters());
     }
 }
