@@ -20,7 +20,7 @@ public class MULTRegister extends Instruction {
         long result = (short) valueDestinationAX * (short) valueDestinationAX; // AX * AX
         short resultAX = (short) (result); // Primeros 16 bits da multiplicação vão para o AX
         short resultDX = (short) 0x0000; // Se não der overflow recebe 0
-        if (result != resultAX) { // Teste do overflow
+        if (result != resultAX) { // Teste do overflow do AX
             resultDX = (short) (result >> 16); // O extouro vai para o DX
         }
         short flags = (short) 0x0000;
