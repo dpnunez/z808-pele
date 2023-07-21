@@ -136,6 +136,10 @@
       <workItem from="1688595198644" duration="2824000" />
       <workItem from="1688678923569" duration="731000" />
       <workItem from="1688684475412" duration="1065000" />
+      <workItem from="1688510344564" duration="6966000" />
+      <workItem from="1688521048030" duration="327000" />
+      <workItem from="1688607150617" duration="1053000" />
+      <workItem from="1688591483449" duration="5831000" />
     </task>
     <task id="LOCAL-00001" summary="feat: add initial class relations">
       <option name="closed" value="true" />
@@ -161,7 +165,23 @@
       <option name="project" value="LOCAL" />
       <updated>1688415588586</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Overflow">
+      <option name="closed" value="true" />
+      <created>1688515417756</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1688515417756</updated>
+    </task>
+    <task id="LOCAL-00005" summary="SUBDirect&#10;&#10;Faltam o OF e o CF.">
+      <option name="closed" value="true" />
+      <created>1688521360521</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1688521360521</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,6 +219,9 @@
     <MESSAGE value="feat: add initial class relations" />
     <MESSAGE value="feat: add z808 registers" />
     <MESSAGE value="criação das classes de SUB." />
+    <MESSAGE value="Overflow" />
+    <MESSAGE value="SUBDirect&#10;&#10;Faltam o OF e o CF." />
+    <option name="LAST_COMMIT_MESSAGE" value="SUBDirect&#10;&#10;Faltam o OF e o CF." />
     <MESSAGE value="criação das classes de ADD." />
     <MESSAGE value="Acrescentação dos zeros a esquerda." />
     <option name="LAST_COMMIT_MESSAGE" value="Acrescentação dos zeros a esquerda." />
