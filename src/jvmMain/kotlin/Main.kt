@@ -39,7 +39,7 @@ fun App() {
         floatingActionButton = {
             LargeFloatingActionButton(
                 onClick = {
-                    counter += 1;
+                    counter += 1
                 }
             ) {
                 Icon( 

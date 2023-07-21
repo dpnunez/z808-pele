@@ -12,12 +12,14 @@ public class Instructions {
 
     public Instructions() {
         HashMap<Short, Instruction> i = new HashMap<>();
+
         Instruction MOVReg = new MOVRegister();
         i.put(MOVReg.getOpcode(), MOVReg);
         Instruction MOVIm = new MOVImediate();
         i.put(MOVIm.getOpcode(), MOVIm);
         Instruction MOVDirect = new MOVDirect();
         i.put(MOVDirect.getOpcode(), MOVDirect);
+
         Instruction SUBReg = new SUBRegister();
         i.put(SUBReg.getOpcode(), SUBReg);
         Instruction ORReg = new ORRegister();
@@ -32,6 +34,12 @@ public class Instructions {
         i.put(ADDIm.getOpcode(), ADDIm);
         Instruction ADDDirect = new ADDDirect();
         i.put(ADDDirect.getOpcode(), ADDDirect);
+
+        Instruction DIVReg = new DIVRegister();
+        i.put(DIVReg.getOpcode(), DIVReg);
+
+        Instruction NOTReg = new NOTRegister();
+        i.put(NOTReg.getOpcode(), NOTReg);
 
         this.instructions = i;
     }
