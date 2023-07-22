@@ -19,7 +19,6 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import javax.swing.JFileChooser
 import javax.swing.filechooser.FileNameExtensionFilter
-import main.Sandbox
 import main.VirtualMachine
 import java.io.File
 
@@ -30,7 +29,7 @@ import java.io.File
 fun App() {
     var currentFile: File? by remember { mutableStateOf(null) }
     var lastrun: String? by remember { mutableStateOf(null) }
-    var virtualMachine: VirtualMachine? by remember { mutableStateOf(null) }
+    var virtualMachine: VirtualMachine by remember { mutableStateOf(VirtualMachine()) }
 
     fun handleRun() {
         if (currentFile != null) {
@@ -87,9 +86,12 @@ fun App() {
         floatingActionButtonPosition = FabPosition.End,
     ) { paddingValues ->
         Box(Modifier.fillMaxSize().padding(paddingValues)) {
-            Row() {
-                Text("File: $currentFile")
-                Text("Lastrun: $lastrun")
+            Row( horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp) ) {
+                Row {
+                    Text("File: $currentFile")
+                    Text("Lastrun: $lastrun")
+                }
+                RegisterPreview(virtualMachine.cpu.registers.registers)
             }
         }
     }
@@ -98,7 +100,7 @@ fun App() {
 fun main() = application {
     val windowState = rememberWindowState()
     Window(state = windowState, onCloseRequest = ::exitApplication) {
-        MaterialTheme {
+        MaterialTheme( colorScheme = darkColorScheme()) {
             App()
         }
     }
