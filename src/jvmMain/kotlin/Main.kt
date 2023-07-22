@@ -26,10 +26,20 @@ import java.io.File
 @OptIn(ExperimentalAnimationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 @Preview
+
 fun App() {
     var currentFile: File? by remember { mutableStateOf(null) }
     var lastrun: String? by remember { mutableStateOf(null) }
     var virtualMachine: VirtualMachine? by remember { mutableStateOf(null) }
+
+    fun handleRun() {
+        if (currentFile != null) {
+            virtualMachine = VirtualMachine()
+            virtualMachine?.loadProgram(currentFile)
+            virtualMachine?.run()
+            lastrun = currentFile?.absolutePath
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -47,9 +57,7 @@ fun App() {
                 FloatingActionButton(
                     modifier = Modifier.alpha(if (currentFile == null) 0.5f else 1f),
                     onClick = {
-                        if(currentFile != null) {
-                            lastrun = currentFile?.absolutePath
-                        }
+                        handleRun()
                     }
                 ) {
                     Icon(

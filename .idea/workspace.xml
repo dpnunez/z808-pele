@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21b21bf7-9aae-45b6-8e8c-3e46ba287ae6" name="Changes" comment="criação das classes de DIV.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/main/CPU.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/main/CPU.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/main/VirtualMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/main/VirtualMachine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jvmMain/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/Main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
