@@ -123,4 +123,80 @@ public class Sandbox {
         vm.getCPU().execute("001001010000000000000001");
         System.out.println(vm.getCPU().getRegisters());
     }
+    public void CMPRegister() {
+        VirtualMachine vm = new VirtualMachine();
+        Register dx = vm.getCPU().getRegisters().getRegisterByName("DX");
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 6);
+        dx.setValue((short) 6);
+        System.out.println(vm.getCPU().getRegisters());
+        // 3BC2
+        vm.getCPU().execute("0011101111000010");
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void CMPImediate() {
+        VirtualMachine vm = new VirtualMachine();
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 10);
+        System.out.println(vm.getCPU().getRegisters());
+        vm.getCPU().execute("001111000000000000001010"); // 0C 10 em binario
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void CMPDirect() {
+        VirtualMachine vm = new VirtualMachine();
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 10);
+        vm.getMemory().setCell(1, (short) 10);
+        vm.getCPU().execute("001111010000000000000001");
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void JMPDirect() {
+        VirtualMachine vm = new VirtualMachine();
+        vm.getMemory().setCell(1, (short) 10);
+        vm.getCPU().execute("111010110000000000000001");
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void JMPImediate() {
+        VirtualMachine vm = new VirtualMachine();
+        System.out.println(vm.getCPU().getRegisters());
+        vm.getCPU().execute("111010100000000000001010"); // 0C 10 em binario
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void JZDirect() {
+        VirtualMachine vm = new VirtualMachine();
+        Register sr = vm.getCPU().getRegisters().getRegisterByName("SR");
+        sr.setValue((short) 256);
+        vm.getMemory().setCell(1, (short) 10);
+        vm.getCPU().execute("011101000000000000000001");
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void JNZDirect() {
+        VirtualMachine vm = new VirtualMachine();
+        Register sr = vm.getCPU().getRegisters().getRegisterByName("SR");
+        sr.setValue((short) 128);
+        vm.getMemory().setCell(1, (short) 10);
+        vm.getCPU().execute("011101010000000000000001");
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void JPDirect() {
+        VirtualMachine vm = new VirtualMachine();
+        Register sr = vm.getCPU().getRegisters().getRegisterByName("SR");
+        sr.setValue((short) 256);
+        vm.getMemory().setCell(1, (short) 10);
+        System.out.println(vm.getCPU().getRegisters());
+        vm.getCPU().execute("011110010000000000000001");
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void CALLDirect() {
+        VirtualMachine vm = new VirtualMachine();
+        vm.getMemory().setCell(1, (short) 10);
+        vm.getCPU().execute("111010010000000000000001");
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void CALLImediate() {
+        VirtualMachine vm = new VirtualMachine();
+        System.out.println(vm.getCPU().getRegisters());
+        vm.getCPU().execute("111010000000000000001010"); // 0C 10 em binario
+        System.out.println(vm.getCPU().getRegisters());
+    }
 }

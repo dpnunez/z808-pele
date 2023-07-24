@@ -43,6 +43,33 @@ public class Instructions {
         i.put(ANDIm.getOpcode(), ANDIm);
         Instruction ANDDirect = new ANDDirect();
         i.put(ANDDirect.getOpcode(), ANDDirect);
+        // CMP
+        Instruction CMPReg = new CMPRegister();
+        i.put(CMPReg.getOpcode(), CMPReg);
+        Instruction CMPIm = new CMPImediate();
+        i.put(CMPIm.getOpcode(), CMPIm);
+        Instruction CMPDirect = new CMPDirect();
+        i.put(CMPDirect.getOpcode(), CMPDirect);
+        // JMP
+        Instruction JMPDirect = new JMPDirect();
+        i.put(JMPDirect.getOpcode(), JMPDirect);
+        Instruction JMPIm = new JMPImediate();
+        i.put(JMPIm.getOpcode(), JMPIm);
+        // JZ
+        Instruction JZDirect = new JZDirect();
+        i.put(JZDirect.getOpcode(), JZDirect);
+        // JNZ
+        Instruction JNZDirect = new JNZDirect();
+        i.put(JNZDirect.getOpcode(), JNZDirect);
+        // JP
+        Instruction JPDirect = new JPDirect();
+        i.put(JPDirect.getOpcode(), JPDirect);
+        // CALL
+        Instruction CALLDirect = new CALLDirect();
+        i.put(CALLDirect.getOpcode(), CALLDirect);
+        Instruction CALLIm = new CALLImediate();
+        i.put(CALLIm.getOpcode(), CALLIm);
+
 
         this.instructions = i;
     }
