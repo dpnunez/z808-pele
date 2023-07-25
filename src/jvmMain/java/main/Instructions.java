@@ -69,6 +69,29 @@ public class Instructions {
         i.put(CALLDirect.getOpcode(), CALLDirect);
         Instruction CALLIm = new CALLImediate();
         i.put(CALLIm.getOpcode(), CALLIm);
+        // POP
+        Instruction POPReg = new POPRegister();
+        i.put(POPReg.getOpcode(), POPReg);
+        Instruction POPDirect = new POPDirect();
+        i.put(POPDirect.getOpcode(), POPDirect);
+        Instruction POPIm = new POPImediate();
+        i.put(POPIm.getOpcode(), POPIm);
+        // POPF
+        Instruction POPFReg = new POPFRegister();
+        i.put(POPFReg.getOpcode(), POPFReg);
+        // PUSH
+        Instruction PUSHReg = new PUSHRegister();
+        i.put(PUSHReg.getOpcode(), PUSHReg);
+        // PUSHF
+        Instruction PUSHFReg = new PUSHFRegister();
+        i.put(PUSHFReg.getOpcode(), PUSHFReg);
+        // RET
+        Instruction RETReg = new RETRegister();
+        i.put(RETReg.getOpcode(), RETReg);
+        // HLT
+        Instruction HLTReg = new HLTRegister();
+        i.put(HLTReg.getOpcode(), HLTReg);
+
 
 
         this.instructions = i;

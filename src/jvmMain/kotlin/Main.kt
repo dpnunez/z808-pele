@@ -26,7 +26,7 @@ fun App() {
 
 
     val sb = Sandbox()
-    sb.CALLImediate();
+    sb.POPFRegister();
 
     Scaffold(
         topBar = {

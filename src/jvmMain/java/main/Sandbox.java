@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Scanner;
+
 public class Sandbox {
     public void movDirect() {
         VirtualMachine vm = new VirtualMachine();
@@ -197,6 +199,83 @@ public class Sandbox {
         VirtualMachine vm = new VirtualMachine();
         System.out.println(vm.getCPU().getRegisters());
         vm.getCPU().execute("111010000000000000001010"); // 0C 10 em binario
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void POPRegister() {
+        VirtualMachine vm = new VirtualMachine();
+        Register sp = vm.getCPU().getRegisters().getRegisterByName("SP");
+        sp.setValue((short) 6);
+        System.out.println(vm.getCPU().getRegisters());
+        // 58C0
+        vm.getCPU().execute("0101100011000000");
+        // 58C2
+        //vm.getCPU().execute("0101100011000010");
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void POPDirect() {
+        VirtualMachine vm = new VirtualMachine();
+        Register sp = vm.getCPU().getRegisters().getRegisterByName("SP");
+        sp.setValue((short) 6);
+        vm.getMemory().setCell(1, (short) 10);
+        vm.getCPU().execute("010110010000000000000001");
+        System.out.println(vm.getCPU().getRegisters());
+        System.out.println(vm.getMemory().getCell(10));
+    }
+    public void POPImediate() {
+        VirtualMachine vm = new VirtualMachine();
+        Register sp = vm.getCPU().getRegisters().getRegisterByName("SP");
+        sp.setValue((short) 6);
+        vm.getCPU().execute("010110100000000000000001");
+        System.out.println(vm.getCPU().getRegisters());
+        System.out.println(vm.getMemory().getCell(1));
+    }
+    public void READDirect() { // COMOOOO
+        VirtualMachine vm = new VirtualMachine();
+        Scanner sc = new Scanner(System.in);
+        short input = sc.nextShort();
+        String valueInBinary = String.format("%16s", Integer.toBinaryString(input)).replace(' ', '0');
+        vm.getMemory().setCell(1, (short) 10);
+        vm.getCPU().execute("010110010000000000000001");
+        System.out.println(vm.getCPU().getRegisters());
+        System.out.println(vm.getMemory().getCell(10));
+    }
+    public void PUSHRegister() {
+        VirtualMachine vm = new VirtualMachine();
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 6);
+        System.out.println(vm.getCPU().getRegisters());
+        // 50C0
+        vm.getCPU().execute("0101000011000000");
+        // 50C2
+        //vm.getCPU().execute("0101000011000010");
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void PUSHFRegister() {
+        VirtualMachine vm = new VirtualMachine();
+        Register sr = vm.getCPU().getRegisters().getRegisterByName("SR");
+        sr.setValue((short) 6);
+        System.out.println(vm.getCPU().getRegisters());
+        vm.getCPU().execute("1001110010011100");
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void RETRegister() {
+        VirtualMachine vm = new VirtualMachine();
+        Register sp = vm.getCPU().getRegisters().getRegisterByName("SP");
+        sp.setValue((short) 6);
+        System.out.println(vm.getCPU().getRegisters());
+        vm.getCPU().execute("1110111111101111");
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void HLTRegister() {
+        VirtualMachine vm = new VirtualMachine();
+        vm.getCPU().execute("1110111011101110");
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void POPFRegister() {
+        VirtualMachine vm = new VirtualMachine();
+        Register sp = vm.getCPU().getRegisters().getRegisterByName("SP");
+        sp.setValue((short) 6);
+        vm.getCPU().execute("1001110110011101");
         System.out.println(vm.getCPU().getRegisters());
     }
 }
