@@ -91,6 +91,9 @@ public class Instructions {
         // HLT
         Instruction HLTReg = new HLTRegister();
         i.put(HLTReg.getOpcode(), HLTReg);
+        // MULT
+        Instruction MULTReg = new MULTRegister();
+        i.put(MULTReg.getOpcode(), MULTReg);
 
 
 

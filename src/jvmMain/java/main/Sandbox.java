@@ -278,4 +278,11 @@ public class Sandbox {
         vm.getCPU().execute("1001110110011101");
         System.out.println(vm.getCPU().getRegisters());
     }
+    public void MULTRegister() {
+        VirtualMachine vm = new VirtualMachine();
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 32767);
+        vm.getCPU().execute("1111011111110000");
+        System.out.println(vm.getCPU().getRegisters());
+    }
 }
