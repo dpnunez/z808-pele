@@ -26,7 +26,7 @@ fun App() {
 
 
     val sb = Sandbox()
-    sb.MULTRegister();
+    sb.STORERegister();
 
     Scaffold(
         topBar = {

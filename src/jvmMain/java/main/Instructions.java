@@ -94,6 +94,9 @@ public class Instructions {
         // MULT
         Instruction MULTReg = new MULTRegister();
         i.put(MULTReg.getOpcode(), MULTReg);
+        // STORERegister
+        Instruction STOREReg = new STORERegister();
+        i.put(STOREReg.getOpcode(), STOREReg);
 
 
 

@@ -285,4 +285,14 @@ public class Sandbox {
         vm.getCPU().execute("1111011111110000");
         System.out.println(vm.getCPU().getRegisters());
     }
+    public void STORERegister() {
+        VirtualMachine vm = new VirtualMachine();
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 12);
+        System.out.println(vm.getCPU().getRegisters());
+        System.out.println(vm.getMemory().getCell(10));
+        vm.getCPU().execute("000001110000000000001010"); // armazena o que tem em AX no endereço...
+        System.out.println(vm.getCPU().getRegisters());
+        System.out.println(vm.getMemory().getCell(10));
+    }
 }

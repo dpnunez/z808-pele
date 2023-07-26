@@ -9,7 +9,7 @@ import main.Registers;
 public class MOVRegister extends Instruction {
 
     public MOVRegister() {
-        super("MOV-Register", (short) 0x01, 2);
+        super("MOV-Register", (short) 0xA0, 2);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         // Memory will not be used in this instruction
