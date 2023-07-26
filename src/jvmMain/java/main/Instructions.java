@@ -97,8 +97,19 @@ public class Instructions {
         // STORERegister
         Instruction STOREReg = new STORERegister();
         i.put(STOREReg.getOpcode(), STOREReg);
-
-
+        // ADD
+        Instruction ADDReg = new ADDRegister();
+        i.put(ADDReg.getOpcode(), ADDReg);
+        Instruction ADDIm = new ADDImediate();
+        i.put(ADDIm.getOpcode(), ADDIm);
+        Instruction ADDDirect = new ADDDirect();
+        i.put(ADDDirect.getOpcode(), ADDDirect);
+        // DIV
+        Instruction DIVReg = new DIVRegister();
+        i.put(DIVReg.getOpcode(), DIVReg);
+        // NOT
+        Instruction NOTReg = new NOTRegister();
+        i.put(NOTReg.getOpcode(), NOTReg);
 
         this.instructions = i;
     }

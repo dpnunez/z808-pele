@@ -1,9 +1,13 @@
 package main;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 public class VirtualMachine {
     private final String name;
     private final CPU cpu;
     private final Memory memory;
+    private File codeFile;
 
     public VirtualMachine(CPU c, Memory memory, String name) {
         this.cpu = c;
@@ -25,6 +29,20 @@ public class VirtualMachine {
 
     public CPU getCPU() {
         return cpu;
+    }
+
+    public void loadProgram(File codeFile) throws IllegalArgumentException {
+        if (codeFile == null) {
+            throw new IllegalArgumentException("codeFile cannot be null");
+        }
+        this.codeFile = codeFile;
+    }
+    public File getCodeFile() {
+        return codeFile;
+    }
+
+    public void run() throws FileNotFoundException {
+        cpu.run(this.codeFile);
     }
 
     public Memory getMemory() {

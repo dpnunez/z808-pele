@@ -10,14 +10,12 @@ public class Sandbox {
         vm.getCPU().execute("000000110000000000000001"); // MOV Direct pointing to cell indexed by 1
         System.out.println(vm.getCPU().getRegisters());
     }
-
     public void movImediate() {
         VirtualMachine vm = new VirtualMachine();
         System.out.println(vm.getCPU().getRegisters());
         vm.getCPU().execute("000000100000000000001000"); // MOV Imediate has 2 bytes operand
         System.out.println(vm.getCPU().getRegisters());
     }
-
     public void movByRegister() {
         VirtualMachine vm = new VirtualMachine();
         Register dx = vm.getCPU().getRegisters().getRegisterByName("DX");
@@ -36,10 +34,26 @@ public class Sandbox {
         VirtualMachine vm = new VirtualMachine();
         Register dx = vm.getCPU().getRegisters().getRegisterByName("DX");
         Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
-        dx.setValue((short) 10);
-        ax.setValue((short) 19);
+        dx.setValue((short) 50000);
+        ax.setValue((short) -60000);
         vm.getCPU().execute("0010101111000010");
         System.out.println(vm.getCPU().getRegisters());
+    }
+    public void DIVRegister(){
+        VirtualMachine vm = new VirtualMachine();
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 0);
+        System.out.println(vm.getCPU().getRegisters());
+        vm.getCPU().execute("1111011111000000");
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void NOTRegister() {
+        VirtualMachine vm = new VirtualMachine();
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 0xffff);
+        System.out.println(vm.getCPU().getRegisters());
+        vm.getCPU().execute("1111100011000000");
+				System.out.println(vm.getCPU().getRegisters());
     }
     public void orByRegister() {
         VirtualMachine vm = new VirtualMachine();
@@ -294,5 +308,29 @@ public class Sandbox {
         vm.getCPU().execute("000001110000000000001010"); // armazena o que tem em AX no endereço...
         System.out.println(vm.getCPU().getRegisters());
         System.out.println(vm.getMemory().getCell(10));
+    }
+    public void addRegister() {
+        VirtualMachine vm = new VirtualMachine();
+        Register dx = vm.getCPU().getRegisters().getRegisterByName("DX");
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        dx.setValue((short) 1);
+        ax.setValue((short) 16384);
+        vm.getCPU().execute("0000001111000010"); // instrução em hex = 03 C2
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void addImediate() {
+        VirtualMachine vm = new VirtualMachine();
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 60);
+        vm.getCPU().execute("000001000000000000111100"); //
+        System.out.println(vm.getCPU().getRegisters());
+    }
+    public void addDirect() {
+        VirtualMachine vm = new VirtualMachine();
+        Register ax = vm.getCPU().getRegisters().getRegisterByName("AX");
+        ax.setValue((short) 16384);
+        vm.getMemory().setCell(1, (short) 1);
+        vm.getCPU().execute("000001010000000000000001");
+        System.out.println(vm.getCPU().getRegisters());
     }
 }

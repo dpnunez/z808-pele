@@ -15,31 +15,36 @@ public class SUBRegister extends Instruction {
         Register regDestination = registers.getRegisterByName("AX");
         Register regFlag = registers.getFlagRegister();
 
-
-
         short valueSource = regSource.getValue();
         short valueDestination = regDestination.getValue();
 
         short result = (short) (valueDestination - valueSource);
+        short flags = 0x0000;
 
         regDestination.setValue(result);
 
         if (result < 0) {
             //setando a flag SF
-            // ToDo: verificar como identificar o carry e o borrow
-            regFlag.setValue((short)(regFlag.getValue() | 0x01));
-            // ToDo: conferir com o ferrugem o resultado de AX
+            flags += 0x0200;
         }
 
         if (regDestination.getBitParity()) {
             //setando a flag PF
-            regFlag.setValue((short)(regFlag.getValue() | 0x20));
-        }
-        else {
-            //setando a flag PF
-            regFlag.setValue((short)(regFlag.getValue() & 0xFFDF));
+            flags += 0x0040;
         }
 
+        if (result == 0) {
+            //setando a flag ZF
+            flags += 0x0100;
+        }
 
+        if (regDestination.getValue() < -16384 || regDestination.getValue() > 16384) {
+            //setando a flag OF
+            flags += 0x1000;
+            //setando a flag CF
+            flags += 0x01;
+        }
+
+        regFlag.setValue(flags);
     }
 }
