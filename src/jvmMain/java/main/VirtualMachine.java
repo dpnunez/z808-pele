@@ -1,5 +1,7 @@
 package main;
 
+import Assembler.Assembler;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -7,12 +9,14 @@ public class VirtualMachine {
     private final String name;
     private final CPU cpu;
     private final Memory memory;
+    private final Assembler asm;
     private File codeFile;
 
     public VirtualMachine(CPU c, Memory memory, String name) {
         this.cpu = c;
         this.memory = memory;
         this.name = name;
+        this.asm = new Assembler();
     }
 
     public VirtualMachine(Memory m) {
@@ -47,5 +51,9 @@ public class VirtualMachine {
 
     public Memory getMemory() {
         return memory;
+    }
+
+    public void assemble(String code) {
+        asm.run(code);
     }
 }
