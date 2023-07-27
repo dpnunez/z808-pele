@@ -2,6 +2,7 @@ import androidx.compose.animation.*
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Build
 import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.*
@@ -30,6 +31,7 @@ fun App() {
     var currentFile: File? by remember { mutableStateOf(null) }
     var lastrun: String? by remember { mutableStateOf(null) }
     var virtualMachine: VirtualMachine by remember { mutableStateOf(VirtualMachine()) }
+    var currentText: String by remember { mutableStateOf("") }
 
     fun handleRun() {
         if (currentFile != null) {
@@ -38,6 +40,10 @@ fun App() {
             virtualMachine?.run()
             lastrun = currentFile?.absolutePath
         }
+    }
+
+    fun handleChangeTextEditor(newValue: String) {
+        currentText = newValue
     }
 
     Scaffold(
@@ -65,6 +71,21 @@ fun App() {
                     )
                 }
                 ExtendedFloatingActionButton(
+                    modifier = Modifier.alpha(if (currentText == "") 0.5f else 1f),
+                    icon = {
+                        Icon(
+                            imageVector = Icons.Rounded.Build,
+                            contentDescription = "Build",
+                        )
+                    },
+                    text = {
+                        Text("Build")
+                    },
+                    onClick = {
+                        virtualMachine.assemble(currentText)
+                    }
+                )
+                ExtendedFloatingActionButton(
                     icon = {
                         Icon(
                             imageVector = Icons.Rounded.Search,
@@ -81,16 +102,15 @@ fun App() {
                         }
                     }
                 )
+
+
             }
         },
         floatingActionButtonPosition = FabPosition.End,
     ) { paddingValues ->
         Box(Modifier.fillMaxSize().padding(paddingValues)) {
             Row( horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp) ) {
-                Row {
-                    Text("File: $currentFile")
-                    Text("Lastrun: $lastrun")
-                }
+                CodeEditor(vm = virtualMachine, text = currentText, onValueChange = ::handleChangeTextEditor)
                 RegisterPreview(virtualMachine.cpu.registers.registers)
             }
         }
