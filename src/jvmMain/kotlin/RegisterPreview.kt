@@ -42,7 +42,7 @@ fun RegisterPreview(registers: MutableMap<Short, Register>) {
     var isBinary by remember { mutableStateOf(true) }
 
     Card(
-        modifier = Modifier.width(300.dp),
+        modifier = Modifier.fillMaxWidth(),
     ) {
         Column(
             modifier = Modifier.padding(16.dp)
