@@ -7,7 +7,7 @@ import main.Registers;
 
 public class ANDImediate extends Instruction {
     public ANDImediate() {
-        super("AND-Imediate", (short) 0x24, 3);
+        super("AND.I", (short) 0x24, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         Register regDestination = registers.getRegisterByName("AX");

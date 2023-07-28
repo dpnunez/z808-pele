@@ -7,7 +7,7 @@ import main.Registers;
 
 public class JPDirect extends Instruction {
     public JPDirect() {
-        super("JP-Direct", (short) 0x79, 3);
+        super("JP.D", (short) 0x79, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         short value = memory.getCell(op);

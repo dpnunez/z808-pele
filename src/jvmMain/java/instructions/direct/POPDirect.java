@@ -7,7 +7,7 @@ import main.Registers;
 
 public class POPDirect extends Instruction {
     public POPDirect() {
-        super("POP-Direct", (short) 0x59, 3);
+        super("POP.D", (short) 0x59, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         short value = memory.getCell(op);

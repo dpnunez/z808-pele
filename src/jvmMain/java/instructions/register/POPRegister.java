@@ -8,7 +8,7 @@ import main.Registers;
 public class POPRegister extends Instruction {
 
     public POPRegister() {
-        super("POP-Register", (short) 0x58, 2);
+        super("POP.R", (short) 0x58, 2);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         Register regSource = registers.getRegisterByName("SP");

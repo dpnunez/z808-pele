@@ -7,7 +7,7 @@ import main.Registers;
 
 public class ORDirect extends Instruction {
     public ORDirect() {
-        super("OR-Direct", (short) 0x0D, 3);
+        super("OR.D", (short) 0x0D, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         short value = memory.getCell(op);

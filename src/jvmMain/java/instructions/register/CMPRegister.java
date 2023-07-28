@@ -8,7 +8,7 @@ import main.Registers;
 public class CMPRegister extends Instruction {
 
     public CMPRegister() {
-        super("CMP-Register", (short) 0x3B, 2);
+        super("CMP.R", (short) 0x3B, 2);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         Register regDestination = registers.getRegisterByName("AX");
