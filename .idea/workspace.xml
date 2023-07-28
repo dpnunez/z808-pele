@@ -6,47 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="21b21bf7-9aae-45b6-8e8c-3e46ba287ae6" name="Changes" comment="criação das classes de DIV.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/ADDDirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/ADDDirect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/ANDDirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/ANDDirect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/CALLDirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/CALLDirect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/CMPDirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/CMPDirect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/JMPDirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/JMPDirect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/JNZDirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/JNZDirect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/JPDirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/JPDirect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/JZDirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/JZDirect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/MOVDirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/MOVDirect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/ORDirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/ORDirect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/POPDirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/POPDirect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/READDirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/READDirect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/SUBDirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/SUBDirect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/XORDirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/direct/XORDirect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/ADDImediate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/ADDImediate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/ANDImediate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/ANDImediate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/CALLImediate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/CALLImediate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/CMPImediate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/CMPImediate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/JMPImediate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/JMPImediate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/MOVImediate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/MOVImediate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/ORImediate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/ORImediate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/POPImediate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/POPImediate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/SUBImediate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/SUBImediate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/XORImediate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/imediate/XORImediate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/ADDRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/ADDRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/ANDRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/ANDRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/CMPRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/CMPRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/DIVRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/DIVRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/HLTRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/HLTRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/MOVRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/MOVRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/MULTRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/MULTRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/NOTRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/NOTRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/ORRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/ORRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/POPFRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/POPFRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/POPRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/POPRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/PUSHFRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/PUSHFRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/PUSHRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/PUSHRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/RETRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/RETRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/STORERegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/STORERegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/SUBRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/SUBRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/XORRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/XORRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/Assembler/Assembler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/Assembler/Assembler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/main/Instructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/main/Instructions.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

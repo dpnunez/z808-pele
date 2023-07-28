@@ -128,6 +128,10 @@ public class Instructions {
         return null;
     }
 
+    public HashMap<Short, Instruction> getInstructions() {
+        return instructions;
+    }
+
     @Override
     public String toString() {
         String result = "";
