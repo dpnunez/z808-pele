@@ -8,7 +8,7 @@ import main.Registers;
 public class XORRegister extends Instruction {
 
     public XORRegister() {
-        super("XOR-Register", (short) 0x33, 2);
+        super("XOR.R", (short) 0x33, 2);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         Register regDestination = registers.getRegisterByName("AX");

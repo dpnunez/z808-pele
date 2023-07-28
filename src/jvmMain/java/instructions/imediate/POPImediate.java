@@ -7,7 +7,7 @@ import main.Registers;
 
 public class POPImediate extends Instruction {
     public POPImediate() {
-        super("POP-Imediate", (short) 0x5A, 3);
+        super("POP.I", (short) 0x5A, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         Register regSource = registers.getRegisterByName("SP");

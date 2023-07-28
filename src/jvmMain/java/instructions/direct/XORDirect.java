@@ -7,7 +7,7 @@ import main.Registers;
 
 public class XORDirect extends Instruction {
     public XORDirect() {
-        super("XOR-Direct", (short) 0x35, 3);
+        super("XOR.D", (short) 0x35, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         short value = memory.getCell(op);

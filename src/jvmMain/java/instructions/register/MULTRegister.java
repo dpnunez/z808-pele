@@ -7,7 +7,7 @@ import main.Registers;
 
 public class MULTRegister extends Instruction {
     public MULTRegister() {
-        super("MULT-Register", (short) 0xF7, 2);
+        super("MULT.R", (short) 0xF7, 2);
     }
 
     public void execute(Registers registers, Memory memory, Short op) {

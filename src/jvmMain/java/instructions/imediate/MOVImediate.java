@@ -9,7 +9,7 @@ import main.Registers;
 public class MOVImediate extends Instruction {
 
     public MOVImediate() {
-        super("MOV-Imediate", (short) 0xA2, 3);
+        super("MOV.I", (short) 0xA2, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         // Memory will not be used in this instruction

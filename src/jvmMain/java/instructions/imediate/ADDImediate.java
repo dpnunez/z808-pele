@@ -9,7 +9,7 @@ import main.Registers;
 public class ADDImediate extends Instruction {
 
     public ADDImediate() {
-        super("ADD-Imediate", (short) 0x04, 3);
+        super("ADD.I", (short) 0x04, 3);
     }
 
     public void execute(Registers registers, Memory memory, Short op) {
