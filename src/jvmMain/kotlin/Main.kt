@@ -108,10 +108,15 @@ fun App() {
         },
         floatingActionButtonPosition = FabPosition.End,
     ) { paddingValues ->
-        Box(Modifier.fillMaxSize().padding(paddingValues)) {
-            Row( horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp) ) {
-                CodeEditor(vm = virtualMachine, text = currentText, onValueChange = ::handleChangeTextEditor)
-                RegisterPreview(virtualMachine.cpu.registers.registers)
+        Box(Modifier.padding(paddingValues)) {
+            Row(modifier = Modifier.padding(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(16.dp) ) {
+                Box(modifier = Modifier.weight(1f)) {
+                    CodeEditor(vm = virtualMachine, text = currentText, onValueChange = ::handleChangeTextEditor)
+                }
+
+                Box(modifier = Modifier.width(400.dp)) {
+                    RegisterPreview(virtualMachine.cpu.registers.registers)
+                }
             }
         }
     }

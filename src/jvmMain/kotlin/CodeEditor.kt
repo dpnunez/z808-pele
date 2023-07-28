@@ -1,4 +1,7 @@
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import main.VirtualMachine
@@ -9,17 +12,16 @@ import androidx.compose.ui.Modifier
 @Composable
 fun CodeEditor(vm: VirtualMachine, text: String, onValueChange : (String) -> Unit) {
 
-    Column() {
-        Card(
-            modifier = Modifier.weight(1f)
-        ) {
-            Text(text = "Code Editor")
-            OutlinedTextField(
-                value = text,
-                onValueChange = onValueChange,
-                singleLine = false,
-            )
-        }
+    Card(
+        modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+    ) {
+        Text(text = "Code Editor")
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+            value = text,
+            onValueChange = onValueChange,
+            singleLine = false,
+        )
     }
 
 }
