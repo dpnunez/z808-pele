@@ -18,6 +18,7 @@ public class LineInterpreter {
         this.label = "";
         this.mnemonic = "";
         this.operand = "";
+        this.commentary = false;
     }
 
     public void run() {
@@ -27,22 +28,33 @@ public class LineInterpreter {
        if (count == 0) {
            // blank line
            return;
+       }
+
+       if (tokens[0].charAt(0) == ';') {
+           //line is commentary
+           this.commentary = true;
+           return;
+       }
+
+       boolean hasLabel = tokens[0].endsWith(":");
+       if (hasLabel) {
+           this.label = tokens[0].substring(0, tokens[0].length() - 1);
+
+           if(tokens[1].charAt(0) == ';') return;
+           this.mnemonic = tokens[1];
+           if (count > 2) {
+               if(tokens[2].charAt(0) == ';') return;
+               this.operand = tokens[2];
+           }
        } else {
-           boolean hasLabel = tokens[0].endsWith(":");
-           if (hasLabel) {
-               this.label = tokens[0].substring(0, tokens[0].length() - 1);
-               this.mnemonic = tokens[1];
-                if (count > 2) {
-                     this.operand = tokens[2];
-                }
-           } else {
-               this.mnemonic = tokens[0];
-                if (count > 1) {
-                     this.operand = tokens[1];
-                }
+           this.mnemonic = tokens[0];
+           if (count > 1) {
+               if(tokens[1].charAt(0) == ';') return;
+               this.operand = tokens[1];
            }
        }
     }
+
 
     public void setLine(String line) {
         this.line = line;
@@ -58,5 +70,9 @@ public class LineInterpreter {
 
     public String getOperand() {
         return operand;
+    }
+
+    public boolean isCommentary() {
+        return commentary;
     }
 }
