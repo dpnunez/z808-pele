@@ -59,9 +59,5 @@ public class CPU {
             execute(instruction);
             pointer += instructionSize;
         }
-
-        // Show Register values
-        System.out.println("Registers:");
-        System.out.println(registers.toString());
     }
 }
