@@ -7,6 +7,7 @@ public abstract class Instruction {
     private final Short opcode;
     private final String name;
 
+
     private final int size;
 
     public Instruction(String name, Short opcode, int size) {
