@@ -9,7 +9,7 @@ import main.Registers;
 
 public class DIVRegister extends Instruction {
 
-    public DIVRegister() { super("DIV-Register", (short) 0xf7, 2); }
+    public DIVRegister() { super("DIV.R", (short) 0xf7, 2); }
 
     public void execute(Registers registers, Memory memory, Short op) {
         // Memory will not be used in this instruction

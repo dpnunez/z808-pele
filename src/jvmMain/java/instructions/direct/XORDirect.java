@@ -5,16 +5,16 @@ import main.Memory;
 import main.Register;
 import main.Registers;
 
-public class ORDirect extends Instruction {
-    public ORDirect() {
-        super("OR.D", (short) 0x0D, 3);
+public class XORDirect extends Instruction {
+    public XORDirect() {
+        super("XOR.D", (short) 0x35, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         short value = memory.getCell(op);
         Register regDestination = registers.getRegisterByName("AX");
         Register regFlag = registers.getFlagRegister();
 
-        short result = (short) (regDestination.getValue() | value);
+        short result = (short) (regDestination.getValue() ^ value);
         short flags = (short) 0x0000;
 
         regDestination.setValue(result);

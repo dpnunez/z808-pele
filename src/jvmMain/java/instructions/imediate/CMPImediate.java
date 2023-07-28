@@ -5,32 +5,19 @@ import main.Memory;
 import main.Register;
 import main.Registers;
 
-public class ORImediate extends Instruction {
-    public ORImediate() {
-        super("OR.I", (short) 0x0C, 3);
+public class CMPImediate extends Instruction {
+    public CMPImediate() {
+        super("CMP.I", (short) 0x3C, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         Register regDestination = registers.getRegisterByName("AX");
         short valueSource = regDestination.getValue();
-        regDestination.setValue(op);
         Register regFlag = registers.getFlagRegister();
 
-        short result = (short) (op | valueSource);
         short flags = (short) 0x0000;
-
-        regDestination.setValue(result);
-
-        // SF
-        if (result < 0) {
-            flags += 0x0200; //1*2^9 decimal = 512
-        }
         // ZF
-        if (result == 0) {
+        if (valueSource == op) {
             flags += 0x0100; //1*2^8 decimal = 256
-        }
-        // PF
-        if (regDestination.getBitParity())  {
-            flags += 0x0040; //1*2^6 decimal = 64
         }
         regFlag.setValue(flags);
     }

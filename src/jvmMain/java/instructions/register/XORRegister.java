@@ -1,20 +1,23 @@
-package instructions.direct;
+package instructions.register;
 
 import instructions.Instruction;
 import main.Memory;
 import main.Register;
 import main.Registers;
 
-public class ORDirect extends Instruction {
-    public ORDirect() {
-        super("OR.D", (short) 0x0D, 3);
+public class XORRegister extends Instruction {
+
+    public XORRegister() {
+        super("XOR.R", (short) 0x33, 2);
     }
     public void execute(Registers registers, Memory memory, Short op) {
-        short value = memory.getCell(op);
         Register regDestination = registers.getRegisterByName("AX");
         Register regFlag = registers.getFlagRegister();
 
-        short result = (short) (regDestination.getValue() | value);
+        short valueSource = registers.getRegisterByOpcode(op).getValue();
+        short valueDestination = regDestination.getValue();
+
+        short result = (short) (valueDestination ^ valueSource);
         short flags = (short) 0x0000;
 
         regDestination.setValue(result);
@@ -33,5 +36,4 @@ public class ORDirect extends Instruction {
         }
         regFlag.setValue(flags);
     }
-
 }
