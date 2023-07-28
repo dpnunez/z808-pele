@@ -17,6 +17,7 @@ fun CodeEditor(vm: VirtualMachine, text: String, onValueChange : (String) -> Uni
     ) {
         Text(text = "Code Editor")
         OutlinedTextField(
+            placeholder = { Text("Digite seu código aqui") },
             modifier = Modifier.fillMaxWidth().fillMaxHeight(),
             value = text,
             onValueChange = onValueChange,
