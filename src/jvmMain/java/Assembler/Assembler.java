@@ -3,6 +3,8 @@ package Assembler;
 import instructions.Instruction;
 import main.Instructions;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,7 +66,7 @@ public class Assembler {
                     throw new RuntimeException("Instruction " + mnemonic + " not supported");
                 } else {
                     Instruction instruction = instructions.get(mnemonic);
-                    PC += instruction.getSize() * 8;
+                    PC += instruction.getSize();
                 }
             }
 
@@ -77,46 +79,62 @@ public class Assembler {
             TableEntry value = entry.getValue();
             System.out.println("Key=" + key + ", Value=" + value.getValue());
         }
+
         PC = 0;
 
-        /*
-        //Passo dois: gerar arquivo em binário
-        for (String line : lines) {
-            lineInterpreter.setLine(line);
-            lineInterpreter.run();
+        try {
+            FileWriter program = new FileWriter("program.txt");
 
-            String mnemonic = lineInterpreter.getMnemonic();
-            String operand = lineInterpreter.getOperand();
+            //Passo dois: gerar arquivo em binário
+            for (String line : lines) {
+                lineInterpreter.setLine(line);
+                lineInterpreter.run();
 
-            System.out.println("Mnemonic: " + mnemonic);
-            System.out.println("Operand: " + operand);
+                String mnemonic = lineInterpreter.getMnemonic();
+                String operand = lineInterpreter.getOperand();
 
-            boolean isSupportedInstruction = instructions.containsKey(mnemonic);
-            if (!isSupportedInstruction) {
-                System.out.println("Instruction not supported");
-                throw new RuntimeException("Instruction " + mnemonic + " not supported");
-            } else {
-                Instruction instruction = instructions.get(mnemonic);
-                // escrever opcode no arquivo em binário
+                System.out.println("Mnemonic: " + mnemonic);
+                System.out.println("Operand: " + operand);
 
-                // instrução com um operando
-                if(instruction.getSize() > 1) {
-                    if(instruction.getSize() == 2) {
-                        // escrever registrador no arquivo
-                    } else {
-                        if(table.isSymbolInTable(operand)) {
-                            // escrever valor da tabela no arquivo
+                boolean isSupportedInstruction = instructions.containsKey(mnemonic);
+                if (!isSupportedInstruction) {
+                    System.out.println("Instruction not supported");
+                    throw new RuntimeException("Instruction " + mnemonic + " not supported");
+                } else {
+                    Instruction instruction = instructions.get(mnemonic);
+                    short opcode = instruction.getOpcode();
+                    short operand1;
+                    int instructionSize = instruction.getSize();
+
+                    // escrever opcode no arquivo em binário
+                    program.write(Integer.toBinaryString((1 << 8) | opcode).substring( 1 ));
+
+                    // instrução com um operando
+                    if(instructionSize > 1) {
+                        if(instructionSize == 2) {
+                            // escrever registrador no arquivo
+                            operand1 = Short.parseShort(operand);
+                            program.write(Integer.toBinaryString((1 << 8) | operand1).substring( 1 ));
                         } else {
-                            // escrever operando no arquivo
+                            if(table.isSymbolInTable(operand)) {
+                                // escrever valor da tabela no arquivo
+                                operand1 = table.getTableEntry(operand).getValue();
+                                program.write(Integer.toBinaryString((1 << 16) | operand1).substring( 1 ));
+                            } else {
+                                // escrever operando no arquivo
+                                operand1 = Short.parseShort(operand);
+                                program.write(Integer.toBinaryString((1 << 16) | operand1).substring( 1 ));
+                            }
                         }
                     }
+
+                    PC += instruction.getSize();
                 }
-
-                PC += instruction.getSize() * 8;
+                lineInterpreter.reset();
             }
-
-            lineInterpreter.reset();
+            program.close();
+        } catch (IOException ie) {
+            System.out.println("An error occurred.");
         }
-        */
     }
 }
