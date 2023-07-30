@@ -29,6 +29,8 @@ public class Register {
         value = v;
     }
 
+    public void incrementValue(short v) { value += v; }
+
     public boolean getBitParity() {
         String valueInBinary = Integer.toBinaryString(value);
         int count = 0;

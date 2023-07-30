@@ -22,6 +22,10 @@ public class Instructions {
         // SUB
         Instruction SUBReg = new SUBRegister();
         i.put(SUBReg.getOpcode(), SUBReg);
+        Instruction SUBIm = new SUBImediate();
+        i.put(SUBIm.getOpcode(), SUBIm);
+        Instruction SUBDirect = new SUBDirect();
+        i.put(SUBDirect.getOpcode(), SUBDirect);
         // OR
         Instruction ORReg = new ORRegister();
         i.put(ORReg.getOpcode(), ORReg);
