@@ -30,7 +30,7 @@ public class Assembler {
     public void run(String code) {
         String[] lines = code.split("\n");
         LineInterpreter lineInterpreter = new LineInterpreter();
-        int LC = lines.length;
+        //int LC = lines.length;
         short PC = 0;
 
         //Passo um: colocar labels em tabela de símbolos e tratamento de pseudocódigo
@@ -66,7 +66,7 @@ public class Assembler {
                     throw new RuntimeException("Instruction " + mnemonic + " not supported");
                 } else {
                     Instruction instruction = instructions.get(mnemonic);
-                    PC += instruction.getSize();
+                    PC += instruction.getSize() * 8;
                 }
             }
 
@@ -128,7 +128,7 @@ public class Assembler {
                         }
                     }
 
-                    PC += instruction.getSize();
+                    PC += instruction.getSize() * 8;
                 }
                 lineInterpreter.reset();
             }

@@ -45,19 +45,24 @@ public class CPU {
     }
 
     public void run(File file) throws FileNotFoundException {
-        int pointer = 0;
         Scanner sc = new Scanner(file);
         StringBuilder code = new StringBuilder();
+
+        Register IP = registers.getRegisterByName("IP");
+        IP.setValue((short) 0);
 
         // ToDo: refatorar para evitar os 2 loops
         while (sc.hasNextLine())
             code.append(sc.nextLine());
-        while (pointer < code.length()) {
-            String opcode = code.substring(pointer, pointer + 8);
+        while (IP.getValue() < code.length()) {
+            int address = IP.getValue();
+            String opcode = code.substring(address, address + 8);
             int instructionSize = instructions.getInstructionByOpcode(Short.parseShort(opcode, 2)).getSize() * 8; // Covert to bits
-            String instruction = code.substring(pointer, pointer + instructionSize);
+            String instruction = code.substring(address, address + instructionSize);
             execute(instruction);
-            pointer += instructionSize;
+            if (address == IP.getValue()) {
+                IP.incrementValue((short) instructionSize);
+            }
         }
     }
 }
