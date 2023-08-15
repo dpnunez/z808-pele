@@ -1,21 +1,28 @@
 package Assembler;
 
+import Assembler.pseudoInstructions.PseudoInstruction;
+import Assembler.pseudoInstructions.Segment;
 import instructions.Instruction;
 import main.Instructions;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Assembler {
     private final HashMap<String, Instruction> instructions;
 //    private final HashMap<String, PseudoInstructions>
+    private final PseudoInstructions pseudoInstructions = new PseudoInstructions();
+    // list PseudoInstructions;
     private final SymbolTable table;
 
     public Assembler() {
         this.instructions = new HashMap<>();
         Instructions i = new Instructions();
+        PseudoInstructions p = new PseudoInstructions();
 
         // Adicionar as intruções suportadas
         for (Map.Entry<Short,Instruction> instruction : i.getInstructions().entrySet()) {
@@ -37,6 +44,7 @@ public class Assembler {
         for (String line : lines) {
             lineInterpreter.setLine(line);
             lineInterpreter.run();
+            boolean isPseudoInstruction = false;
 
             if(lineInterpreter.isCommentary()) {
                 lineInterpreter.reset();
@@ -51,13 +59,20 @@ public class Assembler {
             System.out.println("Mnemonic: " + mnemonic);
             System.out.println("Operand: " + operand);
 
-            if(!label.equals("")) {
+            if(!label.isEmpty()) {
                 table.declareSymbol(label, PC);
             }
 
-            boolean isPseudoInstruction = false;
-            if (isPseudoInstruction) {
+            if(mnemonic.equals("ENDS")){
+                isPseudoInstruction = true;
+            }
+
+            if (pseudoInstructions.containsInstruction(mnemonic)) {
                 // tratar pseudo instrução
+                PseudoInstruction pseudo = pseudoInstructions.getPseudoInstruction(mnemonic);
+                if(pseudo instanceof Segment){
+                    ((Segment) pseudo).setStart((int) PC);
+                }
             } else {
                 // tratar instrução de máquina
                 boolean isSupportedInstruction = instructions.containsKey(mnemonic);
@@ -98,8 +113,10 @@ public class Assembler {
 
                 boolean isSupportedInstruction = instructions.containsKey(mnemonic);
                 if (!isSupportedInstruction) {
-                    System.out.println("Instruction not supported");
-                    throw new RuntimeException("Instruction " + mnemonic + " not supported");
+                    if (!pseudoInstructions.containsInstruction(mnemonic)) {
+                        System.out.println("Instruction not supported");
+                        throw new RuntimeException("Instruction " + mnemonic + " not supported");
+                    }
                 } else {
                     Instruction instruction = instructions.get(mnemonic);
                     short opcode = instruction.getOpcode();
