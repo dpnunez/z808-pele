@@ -11,7 +11,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class Assembler {
     private final HashMap<String, Instruction> instructions;
@@ -73,7 +72,7 @@ public class Assembler {
                     ((Segment) pseudo).setValues(mnemonic, PC);
                 } else if (mnemonic.equals("DW")) {
                     if (pseudo == null){
-                        pseudoInstructions.addListDWorDUP(label, operand);
+                        pseudoInstructions.addListDWorDUP(label, operand, PC);
                     } else {
                         if (((DW)pseudo).getVariable() == null){
                             ((DW) pseudo).setVariable(operand);

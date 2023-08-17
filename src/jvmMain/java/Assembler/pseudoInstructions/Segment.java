@@ -1,26 +1,26 @@
 package Assembler.pseudoInstructions;
 
 public class Segment extends PseudoInstruction {
-    private short start;
-    private short end;
+    private Short start = null;
+    private Short end = null;
 
     public Segment(String name) {
         super(name);
     }
 
-    public short getStart() {
+    public Short getStart() {
         return start;
     }
 
-    public void setStart(short start) {
+    public void setStart(Short start) {
         this.start = start;
     }
 
-    public short getEnd() {
+    public Short getEnd() {
         return end;
     }
 
-    public void setEnd(short end) {
+    public void setEnd(Short end) {
         this.end = end;
     }
 

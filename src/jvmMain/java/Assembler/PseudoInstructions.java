@@ -22,40 +22,61 @@ public class PseudoInstructions {
     }
 
     public boolean containsInstruction(String name){
-        for (String tipo : tips) {
-            if (tipo.equals(name)){
+        for (String tip : tips) {
+            if (tip.equals(name)){
                 return true;
             }
         }
         return false;
     }
     public PseudoInstruction getPseudoInstruction(String name){
-        for (PseudoInstruction instrucao : list) {
-                if (instrucao.getName().equals(name)) {
-                    return instrucao;
+        for (PseudoInstruction instruction : list) {
+                if (instruction.getName().equals(name)) {
+                    return instruction;
                 }
         }
         return null;
     }
 
-    public void addListDWorDUP(String name, String operand){
+    public void addListDWorDUP(String name, String operand, short PC){
         if (!operand.contains("DUP")){
-            DW dw = new DW(name);
+            DW dw = new DW(name, PC);
             if (!operand.equals("?")){
                 dw.setVariable(operand);
             }
             list.add(dw);
         } else {
             // Se for DUP vai criar <contador> vezes o dw (nome0, nome1,...)
-            String[] tokens = operand.split("-+");
-            short count = Short.parseShort(tokens[0]);
-            for (int i = 0; i < count; i++) {
-                DW dw = new DW(name.concat(String.valueOf(i)), tokens[2]);
-                System.out.println(dw.getName());
+            // Operador deve ter - no lugar do espaço (0-DUP-10)
+            String[] parts = operand.split("-+");
+            if (parts[0].equals("OFFSET")){
+                DW dw = new DW(name, Short.toString(offSet(parts[1])), PC );
                 list.add(dw);
+            }else {
+                short count = Short.parseShort(parts[0]);
+                for (int i = 0; i < count; i++) {
+                    DW dw = new DW(name.concat(String.valueOf(i)), parts[2], PC);
+                    System.out.println(dw.getName());
+                    list.add(dw);
+                }
             }
         }
 
+    }
+    private Short offSet(String label){
+        PseudoInstruction pseudoInstruction = getPseudoInstruction(label);
+        Short address = null;
+        // Procura o Segmento que se encontra
+        for (PseudoInstruction instruction : list) {
+            if (instruction instanceof Segment){
+                if (((Segment) instruction).getEnd() != null){
+                    // não entendi mt bem essa parte... tem que calcular o endereço com aqui em baixo?
+                    // ou poderia apenas pegar o endereço direto
+                    address = (short) (((Segment) instruction).getStart() - pseudoInstruction.getAddress());
+                }
+            }
+        }
+        return address;
     }
     public void addListEQU(String name, String operand){
         Equ equ = new Equ(name, operand);
