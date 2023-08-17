@@ -1,6 +1,7 @@
 package Assembler;
 
 import Assembler.pseudoInstructions.DW;
+import Assembler.pseudoInstructions.Equ;
 import Assembler.pseudoInstructions.PseudoInstruction;
 import Assembler.pseudoInstructions.Segment;
 
@@ -8,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PseudoInstructions {
-    private List<PseudoInstruction> list = new ArrayList<>();
-    private String[] tipos = {"SEGMENT", "END", "DW"};
+    private final List<PseudoInstruction> list = new ArrayList<>();
+    private final String[] tips = {"SEGMENT", "END", "DW", "EQU"};
 
     public PseudoInstructions(){
         PseudoInstruction segmentCS = new Segment("CS");
@@ -21,7 +22,7 @@ public class PseudoInstructions {
     }
 
     public boolean containsInstruction(String name){
-        for (String tipo : tipos) {
+        for (String tipo : tips) {
             if (tipo.equals(name)){
                 return true;
             }
@@ -41,7 +42,7 @@ public class PseudoInstructions {
         if (!operand.contains("DUP")){
             DW dw = new DW(name);
             if (!operand.equals("?")){
-                dw.setVariavel(operand);
+                dw.setVariable(operand);
             }
             list.add(dw);
         } else {
@@ -55,5 +56,9 @@ public class PseudoInstructions {
             }
         }
 
+    }
+    public void addListEQU(String name, String operand){
+        Equ equ = new Equ(name, operand);
+        list.add(equ);
     }
 }

@@ -1,6 +1,7 @@
 package Assembler;
 
 import Assembler.pseudoInstructions.DW;
+import Assembler.pseudoInstructions.Equ;
 import Assembler.pseudoInstructions.PseudoInstruction;
 import Assembler.pseudoInstructions.Segment;
 import instructions.Instruction;
@@ -10,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Assembler {
     private final HashMap<String, Instruction> instructions;
@@ -73,11 +75,18 @@ public class Assembler {
                     if (pseudo == null){
                         pseudoInstructions.addListDWorDUP(label, operand);
                     } else {
-                        if (((DW)pseudo).getVariavel() == null){
-                            ((DW) pseudo).setVariavel(operand);
+                        if (((DW)pseudo).getVariable() == null){
+                            ((DW) pseudo).setVariable(operand);
                         } else {
-                            System.out.println("DW: " + label + " = " + ((DW) pseudo).getVariavel());
+                            System.out.println("DW: " + label + " = " + ((DW) pseudo).getVariable());
                         }
+                    }
+                } else if (mnemonic.equals("EQU")) {
+                    if (pseudo == null && !operand.isEmpty()){
+                        pseudoInstructions.addListEQU(label, operand);
+                    }else{
+                        System.out.println("Existing Pseudo-Instruction or invalid value.");
+                        throw new RuntimeException(mnemonic + ": Existing Pseudo-Instruction or invalid value.");
                     }
                 }
 
@@ -143,7 +152,10 @@ public class Assembler {
                             throw new RuntimeException("Pseudo-Instruction doesn't exist: " + operand);
                         }
                         if (pseudo instanceof DW){
-                            operand = ((DW) pseudo).getVariavel();
+                            operand = ((DW) pseudo).getVariable();
+                        }
+                        if (pseudo instanceof Equ){
+                            operand = ((Equ) pseudo).getVariable();
                         }
                     }
 

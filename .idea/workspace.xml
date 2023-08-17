@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21b21bf7-9aae-45b6-8e8c-3e46ba287ae6" name="Changes" comment="criação das classes de DIV.">
+      <change afterPath="$PROJECT_DIR$/src/jvmMain/java/Assembler/pseudoInstructions/Equ.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program.txt" beforeDir="false" afterPath="$PROJECT_DIR$/program.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jvmMain/java/Assembler/Assembler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/Assembler/Assembler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jvmMain/java/Assembler/PseudoInstructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/Assembler/PseudoInstructions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jvmMain/java/Assembler/pseudoInstructions/DW.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/Assembler/pseudoInstructions/DW.java" afterDir="false" />

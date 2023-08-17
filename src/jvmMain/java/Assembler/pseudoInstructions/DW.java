@@ -1,21 +1,21 @@
 package Assembler.pseudoInstructions;
 
 public class DW extends PseudoInstruction {
-    private String variavel = null;
+    private String variable = null;
 
     public DW(String name) {
         super(name);
     }
     public DW(String name, String var) {
         super(name);
-        variavel = var;
+        variable = var;
     }
 
-    public String getVariavel() {
-        return variavel;
+    public String getVariable() {
+        return variable;
     }
 
-    public void setVariavel(String variavel) {
-        this.variavel = variavel;
+    public void setVariable(String variable) {
+        this.variable = variable;
     }
 }
