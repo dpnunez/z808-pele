@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21b21bf7-9aae-45b6-8e8c-3e46ba287ae6" name="Changes" comment="criação das classes de DIV.">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/jvmMain/java/Assembler/pseudoInstructions/DW.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program.txt" beforeDir="false" afterPath="$PROJECT_DIR$/program.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jvmMain/java/Assembler/Assembler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/Assembler/Assembler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jvmMain/java/Assembler/PseudoInstructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/Assembler/PseudoInstructions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/Assembler/pseudoInstructions/PseudoInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/Assembler/pseudoInstructions/PseudoInstruction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jvmMain/java/Assembler/pseudoInstructions/Segment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/Assembler/pseudoInstructions/Segment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/STORERegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/instructions/register/STORERegister.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,10 +55,10 @@
     <option name="SET_USER_NAME_GLOBALLY" value="false" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2Rko0gmVlGpIJPDGkxPnjHmG6X3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />

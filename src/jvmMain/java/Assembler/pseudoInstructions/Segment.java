@@ -1,41 +1,34 @@
 package Assembler.pseudoInstructions;
 
-public class Segment extends PseudoInstruction{
-    private Integer start;
-    private Integer end;
-    private String nameStart = getName().concat("SEGMENT");
-    private String nameEnd = getName().concat("END");
+public class Segment extends PseudoInstruction {
+    private short start;
+    private short end;
 
     public Segment(String name) {
         super(name);
     }
 
-    public Integer getStart() {
+    public short getStart() {
         return start;
     }
-    public void setStart(Integer start) {
+
+    public void setStart(short start) {
         this.start = start;
     }
-    public Integer getEnd() {
+
+    public short getEnd() {
         return end;
     }
-    public void setEnd(Integer end) {
+
+    public void setEnd(short end) {
         this.end = end;
     }
 
-    public String getNameStart() {
-        return nameStart;
-    }
-
-    public void setNameStart(String nameStart) {
-        this.nameStart = nameStart;
-    }
-
-    public String getNameEnd() {
-        return nameEnd;
-    }
-
-    public void setNameEnd(String nameEnd) {
-        this.nameEnd = nameEnd;
+    public void setValues(String mnemonic,Short PC){
+        if (mnemonic.equals("SEGMENT")){
+            setStart(PC);
+        } else {
+            setEnd(PC);
+        }
     }
 }

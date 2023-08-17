@@ -1,5 +1,6 @@
 package Assembler;
 
+import Assembler.pseudoInstructions.DW;
 import Assembler.pseudoInstructions.PseudoInstruction;
 import Assembler.pseudoInstructions.Segment;
 
@@ -8,6 +9,7 @@ import java.util.List;
 
 public class PseudoInstructions {
     private List<PseudoInstruction> list = new ArrayList<>();
+    private String[] tipos = {"SEGMENT", "END", "DW"};
 
     public PseudoInstructions(){
         PseudoInstruction segmentCS = new Segment("CS");
@@ -18,25 +20,29 @@ public class PseudoInstructions {
         list.add(segmentSS);
     }
 
-    public boolean containsInstruction(String i){
-        for (PseudoInstruction instrucao : list) {
-            if (instrucao instanceof Segment) {
-                if (((Segment) instrucao).getNameStart().equals(i) || ((Segment) instrucao).getNameEnd().equals(i)){
-                    return true;
-                }
+    public boolean containsInstruction(String name){
+        for (String tipo : tipos) {
+            if (tipo.equals(name)){
+                return true;
             }
         }
         return false;
     }
     public PseudoInstruction getPseudoInstruction(String name){
         for (PseudoInstruction instrucao : list) {
-            if (instrucao instanceof Segment) {
-                if (((Segment) instrucao).getNameStart().equals(name) || ((Segment) instrucao).getNameEnd().equals(name)) {
+                if (instrucao.getName().equals(name)) {
                     return instrucao;
                 }
-            }
         }
         return null;
+    }
+
+    public void addListDW(String name, String operand){
+        DW dw = new DW(name);
+        if (!operand.equals("?")){
+            dw.setVariavel(Short.parseShort(operand));
+        }
+        list.add(dw);
     }
 
     // ver se contem na lista true e false

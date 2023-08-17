@@ -1,5 +1,6 @@
 package Assembler;
 
+import Assembler.pseudoInstructions.DW;
 import Assembler.pseudoInstructions.PseudoInstruction;
 import Assembler.pseudoInstructions.Segment;
 import instructions.Instruction;
@@ -42,9 +43,9 @@ public class Assembler {
 
         //Passo um: colocar labels em tabela de símbolos e tratamento de pseudocódigo
         for (String line : lines) {
+            line = line.toUpperCase();
             lineInterpreter.setLine(line);
             lineInterpreter.run();
-            boolean isPseudoInstruction = false;
 
             if(lineInterpreter.isCommentary()) {
                 lineInterpreter.reset();
@@ -63,16 +64,24 @@ public class Assembler {
                 table.declareSymbol(label, PC);
             }
 
-            if(mnemonic.equals("ENDS")){
-                isPseudoInstruction = true;
-            }
-
             if (pseudoInstructions.containsInstruction(mnemonic)) {
                 // tratar pseudo instrução
-                PseudoInstruction pseudo = pseudoInstructions.getPseudoInstruction(mnemonic);
+                PseudoInstruction pseudo = pseudoInstructions.getPseudoInstruction(label);
                 if(pseudo instanceof Segment){
-                    ((Segment) pseudo).setStart((int) PC);
+                    ((Segment) pseudo).setValues(mnemonic, PC);
+                } else if (mnemonic.equals("DW")) {
+                    if (pseudo == null){
+                        pseudoInstructions.addListDW(label, operand);
+                    } else {
+                        if (((DW)pseudo).getVariavel() == null){
+                            ((DW) pseudo).setVariavel(Short.parseShort(operand));
+                        } else {
+                            System.out.println("DW: " + label + " = " + ((DW) pseudo).getVariavel());
+                        }
+                    }
+
                 }
+
             } else {
                 // tratar instrução de máquina
                 boolean isSupportedInstruction = instructions.containsKey(mnemonic);
@@ -102,26 +111,44 @@ public class Assembler {
 
             //Passo dois: gerar arquivo em binário
             for (String line : lines) {
+                line = line.toUpperCase();
                 lineInterpreter.setLine(line);
                 lineInterpreter.run();
 
+                String label = lineInterpreter.getLabel();
                 String mnemonic = lineInterpreter.getMnemonic();
                 String operand = lineInterpreter.getOperand();
 
+                System.out.println("Label: " + label);
                 System.out.println("Mnemonic: " + mnemonic);
                 System.out.println("Operand: " + operand);
 
                 boolean isSupportedInstruction = instructions.containsKey(mnemonic);
+                boolean isPseudoInstruction = pseudoInstructions.containsInstruction(mnemonic);
                 if (!isSupportedInstruction) {
-                    if (!pseudoInstructions.containsInstruction(mnemonic)) {
+                    if (!isPseudoInstruction) {
                         System.out.println("Instruction not supported");
                         throw new RuntimeException("Instruction " + mnemonic + " not supported");
                     }
-                } else {
+
+                } else{
                     Instruction instruction = instructions.get(mnemonic);
                     short opcode = instruction.getOpcode();
                     short operand1;
                     int instructionSize = instruction.getSize();
+
+                    // teste para ver se não é um numero
+                    if (!operand.matches("-?\\d+(\\.\\d+)?")) {
+                        PseudoInstruction pseudo = pseudoInstructions.getPseudoInstruction(operand);
+                        if (pseudo == null) {
+                            System.out.println("Pseudo-Instruction doesn't exist");
+                            throw new RuntimeException("Pseudo-Instruction doesn't exist: " + operand);
+                        }
+                        if (pseudo instanceof DW){
+                            short num = ((DW) pseudo).getVariavel();
+                            operand = String.valueOf(num);
+                        }
+                    }
 
                     // escrever opcode no arquivo em binário
                     program.write(Integer.toBinaryString((1 << 8) | opcode).substring( 1 ));
