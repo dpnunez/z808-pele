@@ -37,17 +37,23 @@ public class PseudoInstructions {
         return null;
     }
 
-    public void addListDW(String name, String operand){
-        DW dw = new DW(name);
-        if (!operand.equals("?")){
-            dw.setVariavel(Short.parseShort(operand));
+    public void addListDWorDUP(String name, String operand){
+        if (!operand.contains("DUP")){
+            DW dw = new DW(name);
+            if (!operand.equals("?")){
+                dw.setVariavel(operand);
+            }
+            list.add(dw);
+        } else {
+            // Se for DUP vai criar <contador> vezes o dw (nome0, nome1,...)
+            String[] tokens = operand.split("-+");
+            short count = Short.parseShort(tokens[0]);
+            for (int i = 0; i < count; i++) {
+                DW dw = new DW(name.concat(String.valueOf(i)), tokens[2]);
+                System.out.println(dw.getName());
+                list.add(dw);
+            }
         }
-        list.add(dw);
+
     }
-
-    // ver se contem na lista true e false
-
-    // get
-
-    // set
 }

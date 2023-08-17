@@ -8,9 +8,7 @@ import main.Instructions;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Assembler {
@@ -66,20 +64,21 @@ public class Assembler {
 
             if (pseudoInstructions.containsInstruction(mnemonic)) {
                 // tratar pseudo instrução
+                // label é o nome da PseudoInstrução
+                // mnemonic o tipo ('SEGMENT', ...)
                 PseudoInstruction pseudo = pseudoInstructions.getPseudoInstruction(label);
                 if(pseudo instanceof Segment){
                     ((Segment) pseudo).setValues(mnemonic, PC);
                 } else if (mnemonic.equals("DW")) {
                     if (pseudo == null){
-                        pseudoInstructions.addListDW(label, operand);
+                        pseudoInstructions.addListDWorDUP(label, operand);
                     } else {
                         if (((DW)pseudo).getVariavel() == null){
-                            ((DW) pseudo).setVariavel(Short.parseShort(operand));
+                            ((DW) pseudo).setVariavel(operand);
                         } else {
                             System.out.println("DW: " + label + " = " + ((DW) pseudo).getVariavel());
                         }
                     }
-
                 }
 
             } else {
@@ -130,7 +129,6 @@ public class Assembler {
                         System.out.println("Instruction not supported");
                         throw new RuntimeException("Instruction " + mnemonic + " not supported");
                     }
-
                 } else{
                     Instruction instruction = instructions.get(mnemonic);
                     short opcode = instruction.getOpcode();
@@ -145,8 +143,7 @@ public class Assembler {
                             throw new RuntimeException("Pseudo-Instruction doesn't exist: " + operand);
                         }
                         if (pseudo instanceof DW){
-                            short num = ((DW) pseudo).getVariavel();
-                            operand = String.valueOf(num);
+                            operand = ((DW) pseudo).getVariavel();
                         }
                     }
 
