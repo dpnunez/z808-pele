@@ -88,6 +88,8 @@ public class Assembler {
                         System.out.println("Existing Pseudo-Instruction or invalid value.");
                         throw new RuntimeException(mnemonic + ": Existing Pseudo-Instruction or invalid value.");
                     }
+                } else if (mnemonic.equals("ORG")) {
+                    PC = pseudoInstructions.org(operand, PC);
                 }
 
             } else {
@@ -143,6 +145,7 @@ public class Assembler {
                     short opcode = instruction.getOpcode();
                     short operand1;
                     int instructionSize = instruction.getSize();
+                    boolean org = false;
 
                     // teste para ver se não é um numero
                     if (!operand.matches("-?\\d+(\\.\\d+)?")) {
@@ -156,6 +159,10 @@ public class Assembler {
                         }
                         if (pseudo instanceof Equ){
                             operand = ((Equ) pseudo).getVariable();
+                        }
+                        if (mnemonic.equals("ORG")){
+                            org = true;
+                            PC = pseudoInstructions.org(operand, PC);
                         }
                     }
 
@@ -180,8 +187,9 @@ public class Assembler {
                             }
                         }
                     }
-
-                    PC += instruction.getSize() * 8;
+                    if (!org){
+                        PC += instruction.getSize() * 8;
+                    }
                 }
                 lineInterpreter.reset();
             }

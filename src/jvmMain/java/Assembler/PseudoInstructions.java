@@ -10,7 +10,7 @@ import java.util.List;
 
 public class PseudoInstructions {
     private final List<PseudoInstruction> list = new ArrayList<>();
-    private final String[] tips = {"SEGMENT", "END", "DW", "EQU"};
+    private final String[] tips = {"SEGMENT", "END", "DW", "EQU", "ORG"};
 
     public PseudoInstructions(){
         PseudoInstruction segmentCS = new Segment("CS");
@@ -60,5 +60,22 @@ public class PseudoInstructions {
     public void addListEQU(String name, String operand){
         Equ equ = new Equ(name, operand);
         list.add(equ);
+    }
+    public Short org(String operand, short PC){
+        if (!operand.isEmpty()) {
+            if (operand.charAt(0) == '$' && (operand.length() > 1)) {
+                if (operand.charAt(1) == '+' && (operand.length() > 2)) {
+                    operand = operand.substring(2);
+                    PC += Short.parseShort(operand);
+                    return PC;
+                } else {
+                    operand = operand.substring(1);
+                    PC = Short.parseShort(operand);
+                    return PC;
+                }
+            }
+        }
+        System.out.println("invalid PC value.");
+        throw new RuntimeException("invalid PC value.");
     }
 }
