@@ -89,6 +89,10 @@ public class Assembler {
                     }
                 } else if (mnemonic.equals("ORG")) {
                     PC = pseudoInstructions.org(operand, PC);
+                } else if (mnemonic.equals("ASSUME")) {
+                    pseudoInstructions.assume(operand, PC);
+                } else if (mnemonic.equals("PROC") || mnemonic.equals("ENDP")) {
+                    pseudoInstructions.procEndp(label, PC);
                 }
 
             } else {

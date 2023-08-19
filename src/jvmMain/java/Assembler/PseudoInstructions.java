@@ -1,16 +1,13 @@
 package Assembler;
 
-import Assembler.pseudoInstructions.DW;
-import Assembler.pseudoInstructions.Equ;
-import Assembler.pseudoInstructions.PseudoInstruction;
-import Assembler.pseudoInstructions.Segment;
+import Assembler.pseudoInstructions.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PseudoInstructions {
     private final List<PseudoInstruction> list = new ArrayList<>();
-    private final String[] tips = {"SEGMENT", "END", "DW", "EQU", "ORG"};
+    private final String[] tips = {"SEGMENT", "END", "DW", "EQU", "ORG", "ASSUME", "PROC", "ENDP"};
 
     public PseudoInstructions(){
         PseudoInstruction segmentCS = new Segment("CS");
@@ -98,5 +95,22 @@ public class PseudoInstructions {
         }
         System.out.println("invalid PC value.");
         throw new RuntimeException("invalid PC value.");
+    }
+    public void assume(String operand, Short PC) {
+        if (!operand.isEmpty()) {
+            String[] parts = operand.split(":+");
+            Segment pseudoInstruction = (Segment) getPseudoInstruction(parts[1]);
+            addListDWorDUP(parts[0], Short.toString(pseudoInstruction.getStart()), PC);
+        }
+    }
+
+    public void procEndp(String label, Short PC) {
+        ProcEndp pseudoInstruction = (ProcEndp) getPseudoInstruction(label);
+        if (pseudoInstruction == null) {
+            ProcEndp procendp = new ProcEndp(label, PC, PC);
+            list.add(procendp);
+        } else {
+            pseudoInstruction.setEnd(PC);
+        }
     }
 }
