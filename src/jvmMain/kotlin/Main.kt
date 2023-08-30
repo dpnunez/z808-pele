@@ -28,17 +28,17 @@ import java.io.File
 @Preview
 
 fun App() {
-    var currentFile: File? by remember { mutableStateOf(null) }
+    var currentFiles: Array<File>? by remember { mutableStateOf(null) }
     var lastrun: String? by remember { mutableStateOf(null) }
     var virtualMachine: VirtualMachine by remember { mutableStateOf(VirtualMachine()) }
     var currentText: String by remember { mutableStateOf("") }
 
     fun handleRun() {
-        if (currentFile != null) {
+        if (currentFiles != null) {
             virtualMachine = VirtualMachine()
-            virtualMachine?.loadProgram(currentFile)
+            virtualMachine?.loadProgram(currentFiles)
             virtualMachine?.run()
-            lastrun = currentFile?.absolutePath
+            lastrun = concatCurrentFilesName(currentFiles)
         }
     }
 
@@ -53,6 +53,15 @@ fun App() {
                     Text(text = "z808-pele")
                 }
             )
+            // Mostrar os nomes dos arquivos contidos em currentFiles
+            // Se currentFiles for null, mostrar "Nenhum arquivo carregado"
+            // Se currentFiles for diferente de null, mostrar o nome do arquivo
+
+            if (currentFiles != null) {
+                Text(text = concatCurrentFilesName(currentFiles) ?: "Nenhum arquivo carregado")
+            } else {
+                Text(text = "Nenhum arquivo carregado")
+            }
         },
         floatingActionButton = {
             Row(
@@ -60,7 +69,7 @@ fun App() {
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 FloatingActionButton(
-                    modifier = Modifier.alpha(if (currentFile == null) 0.5f else 1f),
+                    modifier = Modifier.alpha(if (currentFiles == null) 0.5f else 1f),
                     onClick = {
                         handleRun()
                     }
@@ -75,11 +84,11 @@ fun App() {
                     icon = {
                         Icon(
                             imageVector = Icons.Rounded.Build,
-                            contentDescription = "Build",
+                            contentDescription = "Assemble",
                         )
                     },
                     text = {
-                        Text("Build")
+                        Text("Assemble")
                     },
                     onClick = {
                         virtualMachine.assemble(currentText)
@@ -93,12 +102,12 @@ fun App() {
                         )
                     },
                     text = {
-                        Text("Carregar Arquivo")
+                        Text("Carregar Arquivos")
                     },
                     onClick = {
                         val selectedFile = selectFile()
                         if (selectedFile != null) {
-                            currentFile = selectedFile
+                            currentFiles = selectedFile
                         }
                     }
                 )
@@ -131,13 +140,34 @@ fun main() = application {
     }
 }
 
-fun selectFile(): File? {
+fun selectFile(): Array<File>? {
     val chooser = JFileChooser()
-    val filter = FileNameExtensionFilter("Text Files", "txt")
+    chooser.isMultiSelectionEnabled = true;
+    val filter = FileNameExtensionFilter("Object files", "obj")
     chooser.fileFilter = filter
 
     val result = chooser.showOpenDialog(null)
     return if (result == JFileChooser.APPROVE_OPTION) {
-        chooser.selectedFile
+        for(file in chooser.selectedFiles) {
+            println(file.name)
+        }
+
+        // Ordernar os arquivos por ordem alfabética
+        chooser.selectedFiles.sort()
+        chooser.selectedFiles
     } else null
 }
+
+fun concatCurrentFilesName(currentFiles: Array<File>?): String {
+    var result = ""
+    var i = 1
+    if (currentFiles != null) {
+        for (file in currentFiles) {
+            result += i.toString() + ". " + file.name + "    "
+            i++
+        }
+    }
+    return result
+}
+
+

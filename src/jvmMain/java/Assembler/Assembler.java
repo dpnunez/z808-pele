@@ -83,7 +83,11 @@ public class Assembler {
         PC = 0;
 
         try {
-            FileWriter program = new FileWriter("program.txt");
+            // Abrir explorador de arquivos para escolher o nome e o local de onde salvar o arquivo
+
+            //Passo um: criar arquivo
+            FileWriter program = new FileWriter("temp_program.obj");
+
 
             //Passo dois: gerar arquivo em binário
             for (String line : lines) {
