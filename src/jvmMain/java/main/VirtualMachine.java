@@ -89,7 +89,11 @@ public class VirtualMachine {
 
         // Depois de linkado e gerado o arquivo .bin final é que executamos o programa
         // ToDo: alterar para executar todos os arquivos selecionados
-//        cpu.run(this.codeFile[0]);
+        // Carregar o arquivo .obj gerado pelo assembler
+
+        File file = new File(codeFileName[0] + ".obj");
+        System.out.println("Executando..." + file.getName());
+        cpu.run(file);
     }
 
     public Memory getMemory() {
