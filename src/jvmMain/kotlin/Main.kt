@@ -79,21 +79,21 @@ fun App() {
                         contentDescription = "Play",
                     )
                 }
-                ExtendedFloatingActionButton(
-                    modifier = Modifier.alpha(if (currentText == "") 0.5f else 1f),
-                    icon = {
-                        Icon(
-                            imageVector = Icons.Rounded.Build,
-                            contentDescription = "Assemble",
-                        )
-                    },
-                    text = {
-                        Text("Assemble")
-                    },
-                    onClick = {
-                        virtualMachine.assemble(currentText)
-                    }
-                )
+//                ExtendedFloatingActionButton(
+//                    modifier = Modifier.alpha(if (currentText == "") 0.5f else 1f),
+//                    icon = {
+//                        Icon(
+//                            imageVector = Icons.Rounded.Build,
+//                            contentDescription = "Assemble",
+//                        )
+//                    },
+//                    text = {
+//                        Text("Assemble")
+//                    },
+//                    onClick = {
+//                        virtualMachine.assemble(currentText)
+//                    }
+//                )
                 ExtendedFloatingActionButton(
                     icon = {
                         Icon(
@@ -102,7 +102,7 @@ fun App() {
                         )
                     },
                     text = {
-                        Text("Carregar Arquivos")
+                        Text("Load Files")
                     },
                     onClick = {
                         val selectedFile = selectFile()
@@ -143,7 +143,7 @@ fun main() = application {
 fun selectFile(): Array<File>? {
     val chooser = JFileChooser()
     chooser.isMultiSelectionEnabled = true;
-    val filter = FileNameExtensionFilter("Object files", "obj")
+    val filter = FileNameExtensionFilter("Assembly Files", "asm")
     chooser.fileFilter = filter
 
     val result = chooser.showOpenDialog(null)

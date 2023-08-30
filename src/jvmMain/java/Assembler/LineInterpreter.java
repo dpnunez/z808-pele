@@ -24,8 +24,7 @@ public class LineInterpreter {
     public void run() {
         String[] tokens = line.split("\\s+");
         int count = tokens.length;
-
-       if (count == 0) {
+       if (count == 0 || line.length() == 0) {
            // blank line
            return;
        }

@@ -34,7 +34,7 @@ public class Assembler {
         this.table = new SymbolTable();
     }
 
-    public void run(String code) {
+    public void run(String code, String fileName) {
         String[] lines = code.split("\n");
         LineInterpreter lineInterpreter = new LineInterpreter();
         //int LC = lines.length;
@@ -123,7 +123,7 @@ public class Assembler {
             // Abrir explorador de arquivos para escolher o nome e o local de onde salvar o arquivo
 
             //Passo um: criar arquivo
-            FileWriter program = new FileWriter("temp_program.obj");
+            FileWriter program = new FileWriter(fileName+".obj");
 
 
             //Passo dois: gerar arquivo em binário
