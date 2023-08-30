@@ -10,6 +10,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jvmMain/java/Assembler/Assembler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/Assembler/Assembler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jvmMain/java/Assembler/PseudoInstructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/Assembler/PseudoInstructions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/Assembler/Assembler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/Assembler/Assembler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jvmMain/java/main/VirtualMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/java/main/VirtualMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jvmMain/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/Main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,6 +149,7 @@
       <workItem from="1688607150617" duration="1053000" />
       <workItem from="1688591483449" duration="5831000" />
       <workItem from="1690483218708" duration="2173000" />
+      <workItem from="1693405197123" duration="2849000" />
     </task>
     <task id="LOCAL-00001" summary="feat: add initial class relations">
       <option name="closed" value="true" />

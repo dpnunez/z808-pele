@@ -10,7 +10,7 @@ public class VirtualMachine {
     private final CPU cpu;
     private final Memory memory;
     private final Assembler asm;
-    private File codeFile;
+    private File[] codeFile;
 
     public VirtualMachine(CPU c, Memory memory, String name) {
         this.cpu = c;
@@ -35,18 +35,28 @@ public class VirtualMachine {
         return cpu;
     }
 
-    public void loadProgram(File codeFile) throws IllegalArgumentException {
-        if (codeFile == null) {
+    public void loadProgram(File[] codeFile) throws IllegalArgumentException {
+        if (codeFile == null || codeFile.length == 0) {
             throw new IllegalArgumentException("codeFile cannot be null");
         }
+
+        // ToDo: Alterar para executar todos os arquivos selecionados
         this.codeFile = codeFile;
     }
-    public File getCodeFile() {
+    public File[] getCodeFile() {
         return codeFile;
     }
 
     public void run() throws FileNotFoundException {
-        cpu.run(this.codeFile);
+        // ToDo: A "linkagem" dos arquivos acontece aqui. Nesse estagio recebemos um array de arquivos .obj que já passaram pelo processador de macros e assembler
+
+
+        // Código de linker
+
+
+        // Depois de linkado e gerado o arquivo .bin final é que executamos o programa
+        // ToDo: alterar para executar todos os arquivos selecionados
+        cpu.run(this.codeFile[0]);
     }
 
     public Memory getMemory() {
