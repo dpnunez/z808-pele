@@ -63,6 +63,7 @@ public class Assembler {
             System.out.println("Mnemonic: " + mnemonic);
             System.out.println("Operand: " + operand);
             char relocationValue = 'r';
+            char signalValue = '+';
 
             if (!label.isEmpty()) {
                 if(mnemonic.equals("EQU")) {
@@ -82,8 +83,12 @@ public class Assembler {
                     tables.declareDefinitionTableEntry(operand);
                     continue;
                 } else {
-                    tables.newSymbolTableEntry(operand, 'r', 'e', (short) 0);
-                    tables.newUseTableEntry(operand, '+');
+                    String extrnSignal[] = operand.split(":");
+                    if(extrnSignal[1].equals("ABS"))
+                        signalValue = '=';
+
+                    tables.newSymbolTableEntry(extrnSignal[0], 'r', 'e', (short) 0);
+                    tables.newUseTableEntry(extrnSignal[0], signalValue);
                     continue;
                 }
             }
@@ -221,6 +226,7 @@ public class Assembler {
                     // escrever opcode no arquivo em binário
                     program.write(Integer.toBinaryString((1 << 8) | opcode).substring( 1 ));
 
+
                     // instrução com um operando
                     if(instructionSize > 1) {
                         if(instructionSize == 2) {
@@ -230,7 +236,7 @@ public class Assembler {
                         } else {
                             if(tables.isSymbolInST(operand)) {
                                 if(tables.isSymbolInUT(operand))
-                                    tables.newUseTableEntryOccurrence(operand, PC);
+                                    tables.newUseTableEntryOccurrence(operand, (short) (PC + 8));
                                 // escrever valor da tabela no arquivo
                                 operand1 = tables.getSymbolTableEntry(operand).getValue();
                                 program.write(Integer.toBinaryString((1 << 16) | operand1).substring( 1 ));
@@ -272,6 +278,7 @@ public class Assembler {
                 if(entry.getValue() != null) {
                     UseTableEntry value = entry.getValue();
                     ArrayList<Short> occurrences = value.getOccurrences();
+                    System.out.println("Signal: " + value.getSignal());
                     for(int i = 0; i < occurrences.size(); i++)
                         System.out.println(occurrences.get(i));
                 }
