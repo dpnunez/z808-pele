@@ -19,7 +19,7 @@ public class Assembler {
     private final PseudoInstructions pseudoInstructions;
     // list PseudoInstructions;
     private final LinkerDirectives linkerDirectives;
-    private final Tables tables;
+    private Tables tables;
 
     public Assembler() {
         this.instructions = new HashMap<>();
@@ -35,10 +35,10 @@ public class Assembler {
         pseudoInstructions = new PseudoInstructions();
 
         this.linkerDirectives = new LinkerDirectives();
-        this.tables = new Tables();
     }
 
-    public void run(String code, String fileName) {
+    public Tables run(String code, String fileName) {
+        this.tables = new Tables();
         String[] lines = code.split("\n");
         LineInterpreter lineInterpreter = new LineInterpreter();
         //int LC = lines.length;
@@ -288,5 +288,7 @@ public class Assembler {
         } catch (IOException ie) {
             System.out.println("An error occurred.");
         }
+
+        return tables;
     }
 }
