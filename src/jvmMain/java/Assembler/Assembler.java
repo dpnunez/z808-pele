@@ -9,15 +9,17 @@ import main.Instructions;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Assembler {
     private final HashMap<String, Instruction> instructions;
 //    private final HashMap<String, PseudoInstructions>
-    private final PseudoInstructions pseudoInstructions = new PseudoInstructions();
+    private final PseudoInstructions pseudoInstructions;
     // list PseudoInstructions;
-    private final SymbolTable table;
+    private final LinkerDirectives linkerDirectives;
+    private Tables tables;
 
     public Assembler() {
         this.instructions = new HashMap<>();
@@ -30,11 +32,13 @@ public class Assembler {
         }
 
         // Adicionar as pseudo_instrucoes suportadas
+        pseudoInstructions = new PseudoInstructions();
 
-        this.table = new SymbolTable();
+        this.linkerDirectives = new LinkerDirectives();
     }
 
-    public void run(String code, String fileName) {
+    public Tables run(String code, String fileName) {
+        this.tables = new Tables();
         String[] lines = code.split("\n");
         LineInterpreter lineInterpreter = new LineInterpreter();
         //int LC = lines.length;
@@ -58,9 +62,35 @@ public class Assembler {
             System.out.println("Label: " + label);
             System.out.println("Mnemonic: " + mnemonic);
             System.out.println("Operand: " + operand);
+            char relocationValue = 'r';
+            char signalValue = '+';
 
-            if(!label.isEmpty()) {
-                table.declareSymbol(label, PC);
+            if (!label.isEmpty()) {
+                if(mnemonic.equals("EQU")) {
+                    relocationValue = 'a';
+                }
+
+                tables.newSymbolTableEntry(label, relocationValue, 'd', PC);
+
+                if(tables.isSymbolInDT(label)) {
+                    tables.newDefinitionTableEntry(label, relocationValue, PC);
+                }
+            }
+
+            if (linkerDirectives.isLinkerDirective(mnemonic)) {
+                if (mnemonic.equals("PUBLIC")) {
+                    tables.declareSymbolTableEntry(operand);
+                    tables.declareDefinitionTableEntry(operand);
+                    continue;
+                } else {
+                    String extrnSignal[] = operand.split(":");
+                    if(extrnSignal[1].equals("ABS"))
+                        signalValue = '=';
+
+                    tables.newSymbolTableEntry(extrnSignal[0], 'r', 'e', (short) 0);
+                    tables.newUseTableEntry(extrnSignal[0], signalValue);
+                    continue;
+                }
             }
 
             if (pseudoInstructions.containsInstruction(mnemonic)) {
@@ -111,10 +141,25 @@ public class Assembler {
         }
 
         // Printa tabela de símbolos
-        for (Map.Entry<String, TableEntry> entry : table.getSymbolTable().entrySet()) {
+        System.out.println("Tabela de simbolos:");
+        for (Map.Entry<String, SymbolTableEntry> entry : tables.getSymbolTable().entrySet()) {
             String key = entry.getKey();
-            TableEntry value = entry.getValue();
-            System.out.println("Key=" + key + ", Value=" + value.getValue());
+            if(entry.getValue() != null) {
+                SymbolTableEntry value = entry.getValue();
+                System.out.println("Key=" + key + ", Value=" + value.getValue());
+            } else System.out.println("Key=" + key);
+        }
+
+        // Printa tabela de definição
+        System.out.println("Tabela de definicao:");
+        for (String key : tables.getDefinitionTable().keySet()) {
+            System.out.println("Key=" + key);
+        }
+
+        // Printa tabela de uso
+        System.out.println("Tabela de uso:");
+        for (String key : tables.getUseTable().keySet()) {
+            System.out.println("Key=" + key);
         }
 
         PC = 0;
@@ -132,6 +177,11 @@ public class Assembler {
                 lineInterpreter.setLine(line);
                 lineInterpreter.run();
 
+                if(lineInterpreter.isCommentary()) {
+                    lineInterpreter.reset();
+                    continue;
+                }
+
                 String label = lineInterpreter.getLabel();
                 String mnemonic = lineInterpreter.getMnemonic();
                 String operand = lineInterpreter.getOperand();
@@ -144,8 +194,8 @@ public class Assembler {
                 boolean isPseudoInstruction = pseudoInstructions.containsInstruction(mnemonic);
                 if (!isSupportedInstruction) {
                     if (!isPseudoInstruction) {
-                        System.out.println("Instruction not supported");
-                        throw new RuntimeException("Instruction " + mnemonic + " not supported");
+                        //System.out.println("Instruction not supported");
+                        //throw new RuntimeException("Instruction " + mnemonic + " not supported");
                     }
                 } else{
                     Instruction instruction = instructions.get(mnemonic);
@@ -158,8 +208,8 @@ public class Assembler {
                     if (!operand.matches("-?\\d+(\\.\\d+)?")) {
                         PseudoInstruction pseudo = pseudoInstructions.getPseudoInstruction(operand);
                         if (pseudo == null) {
-                            System.out.println("Pseudo-Instruction doesn't exist");
-                            throw new RuntimeException("Pseudo-Instruction doesn't exist: " + operand);
+                            //System.out.println("Pseudo-Instruction doesn't exist");
+                            //throw new RuntimeException("Pseudo-Instruction doesn't exist: " + operand);
                         }
                         if (pseudo instanceof DW){
                             operand = ((DW) pseudo).getVariable();
@@ -176,6 +226,7 @@ public class Assembler {
                     // escrever opcode no arquivo em binário
                     program.write(Integer.toBinaryString((1 << 8) | opcode).substring( 1 ));
 
+
                     // instrução com um operando
                     if(instructionSize > 1) {
                         if(instructionSize == 2) {
@@ -183,9 +234,11 @@ public class Assembler {
                             operand1 = Short.parseShort(operand);
                             program.write(Integer.toBinaryString((1 << 8) | operand1).substring( 1 ));
                         } else {
-                            if(table.isSymbolInTable(operand)) {
+                            if(tables.isSymbolInST(operand)) {
+                                if(tables.isSymbolInUT(operand))
+                                    tables.newUseTableEntryOccurrence(operand, (short) (PC + 8));
                                 // escrever valor da tabela no arquivo
-                                operand1 = table.getTableEntry(operand).getValue();
+                                operand1 = tables.getSymbolTableEntry(operand).getValue();
                                 program.write(Integer.toBinaryString((1 << 16) | operand1).substring( 1 ));
                             } else {
                                 // escrever operando no arquivo
@@ -200,9 +253,42 @@ public class Assembler {
                 }
                 lineInterpreter.reset();
             }
+
+            // Printa tabela de símbolos
+            System.out.println("Tabela de simbolos:");
+            for (Map.Entry<String, SymbolTableEntry> entry : tables.getSymbolTable().entrySet()) {
+                String key = entry.getKey();
+                if(entry.getValue() != null) {
+                    SymbolTableEntry value = entry.getValue();
+                    System.out.println("Key=" + key + ", Value=" + value.getValue());
+                } else System.out.println("Key=" + key);
+            }
+
+            // Printa tabela de definição
+            for (Map.Entry<String, DefinitionTableEntry> entry : tables.getDefinitionTable().entrySet()) {
+                String key = entry.getKey();
+                if(entry.getValue() != null) {
+                    DefinitionTableEntry value = entry.getValue();
+                    System.out.println("Key=" + key + ", Value=" + value.getValue());
+                } else System.out.println("Key=" + key);
+            }
+
+            for (Map.Entry<String, UseTableEntry> entry : tables.getUseTable().entrySet()) {
+                String key = entry.getKey();
+                if(entry.getValue() != null) {
+                    UseTableEntry value = entry.getValue();
+                    ArrayList<Short> occurrences = value.getOccurrences();
+                    System.out.println("Signal: " + value.getSignal());
+                    for(int i = 0; i < occurrences.size(); i++)
+                        System.out.println(occurrences.get(i));
+                }
+            }
+
             program.close();
         } catch (IOException ie) {
             System.out.println("An error occurred.");
         }
+
+        return tables;
     }
 }

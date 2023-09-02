@@ -24,19 +24,20 @@ public class LineInterpreter {
     public void run() {
         String[] tokens = line.split("\\s+");
         int count = tokens.length;
-       if (count == 0 || line.length() == 0) {
+        if (count == 0 || line.length() == 0) {
            // blank line
+           commentary = true;
            return;
-       }
+        }
 
-       if (tokens[0].charAt(0) == ';') {
+        if (tokens[0].charAt(0) == ';') {
            //line is commentary
            this.commentary = true;
            return;
-       }
+        }
 
-       boolean hasLabel = tokens[0].endsWith(":");
-       if (hasLabel) {
+        boolean hasLabel = tokens[0].endsWith(":");
+        if (hasLabel) {
            this.label = tokens[0].substring(0, tokens[0].length() - 1);
 
            if(tokens[1].charAt(0) == ';') return;
@@ -45,13 +46,13 @@ public class LineInterpreter {
                if(tokens[2].charAt(0) == ';') return;
                this.operand = tokens[2];
            }
-       } else {
+        } else {
            this.mnemonic = tokens[0];
            if (count > 1) {
                if(tokens[1].charAt(0) == ';') return;
                this.operand = tokens[1];
            }
-       }
+        }
     }
 
 

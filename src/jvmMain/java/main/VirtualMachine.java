@@ -1,9 +1,12 @@
 package main;
 
 import Assembler.Assembler;
+import Assembler.Tables;
+import Linker.Linker;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class VirtualMachine {
@@ -11,6 +14,7 @@ public class VirtualMachine {
     private final CPU cpu;
     private final Memory memory;
     private final Assembler asm;
+    private final Linker linker;
     private File[] codeFile;
 
     public VirtualMachine(CPU c, Memory memory, String name) {
@@ -18,6 +22,7 @@ public class VirtualMachine {
         this.memory = memory;
         this.name = name;
         this.asm = new Assembler();
+        this.linker = new Linker();
     }
 
     public VirtualMachine(Memory m) {
@@ -48,10 +53,11 @@ public class VirtualMachine {
         return codeFile;
     }
 
-    public void run() throws FileNotFoundException {
+    public void run() throws IOException {
         // Montar vetor de strings com o nome de cada arquivo
 
         String[] codeFileName = new String[this.codeFile.length];
+        Tables[] tables = new Tables[this.codeFile.length];
         for (int i = 0; i < this.codeFile.length; i++) {
             codeFileName[i] = this.codeFile[i].getName().split("\\.")[0];
         }
@@ -66,8 +72,9 @@ public class VirtualMachine {
 
         // Monta
         System.out.println("Montando...");
-        for (File file : this.codeFile) {
+        for (int i = 0; i < this.codeFile.length; i++) {
             // Get file content
+            File file = this.codeFile[i];
             Scanner sc = new Scanner(file);
             StringBuilder code = new StringBuilder();
 
@@ -78,20 +85,13 @@ public class VirtualMachine {
 
             System.out.println(code.toString());
             String fileName = file.getName().split("\\.")[0];
-            this.assemble(code.toString(), fileName);
+            tables[i] = this.assemble(code.toString(), fileName);
         }
         // Linka
-        // ToDo: A "linkagem" dos arquivos acontece aqui. Nesse estagio recebemos um array de arquivos .obj que já passaram pelo processador de macros e assembler
+        linker.run(codeFile, tables);
 
-
-        // Código de linker
-
-
-        // Depois de linkado e gerado o arquivo .bin final é que executamos o programa
-        // ToDo: alterar para executar todos os arquivos selecionados
-        // Carregar o arquivo .obj gerado pelo assembler
-
-        File file = new File(codeFileName[0] + ".obj");
+        //File file = new File(codeFileName[0] + ".obj");
+        File file = new File("linkedProgram.txt");
         System.out.println("Executando..." + file.getName());
         cpu.run(file);
     }
@@ -100,7 +100,7 @@ public class VirtualMachine {
         return memory;
     }
 
-    public void assemble(String code, String fileName) {
-        asm.run(code, fileName);
+    public Tables assemble(String code, String fileName) {
+        return asm.run(code, fileName);
     }
 }
