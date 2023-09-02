@@ -6,6 +6,7 @@ import Linker.Linker;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class VirtualMachine {
@@ -52,7 +53,7 @@ public class VirtualMachine {
         return codeFile;
     }
 
-    public void run() throws FileNotFoundException {
+    public void run() throws IOException {
         // Montar vetor de strings com o nome de cada arquivo
 
         String[] codeFileName = new String[this.codeFile.length];
@@ -87,17 +88,10 @@ public class VirtualMachine {
             tables[i] = this.assemble(code.toString(), fileName);
         }
         // Linka
-        // ToDo: A "linkagem" dos arquivos acontece aqui. Nesse estagio recebemos um array de arquivos .obj que já passaram pelo processador de macros e assembler
-
-        // Código de linker
         linker.run(codeFile, tables);
 
-
-        // Depois de linkado e gerado o arquivo .bin final é que executamos o programa
-        // ToDo: alterar para executar todos os arquivos selecionados
-        // Carregar o arquivo .obj gerado pelo assembler
-
-        File file = new File(codeFileName[0] + ".obj");
+        //File file = new File(codeFileName[0] + ".obj");
+        File file = new File("linkedProgram.txt");
         System.out.println("Executando..." + file.getName());
         cpu.run(file);
     }
