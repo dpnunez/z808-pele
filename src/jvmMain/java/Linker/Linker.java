@@ -4,10 +4,7 @@ import Assembler.DefinitionTableEntry;
 import Assembler.Tables;
 import Assembler.UseTableEntry;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +22,7 @@ public class Linker {
         secondStep(files, moduleTables);
     }
 
-    public void firstStep(File[] files, Tables[] moduleTables) throws FileNotFoundException {
+    public void firstStep(File[] files, Tables[] moduleTables) throws IOException {
         int programSize = 0;
 
         for (int i = 0; i < files.length; i++) {
@@ -39,50 +36,43 @@ public class Linker {
             }
 
             File file = new File(fileName);
-            Scanner sc = new Scanner(file);
-            String code = sc.nextLine();
-            programSize += code.length();
+            FileInputStream inputStream = new FileInputStream(file);
+            byte[] fileBytes = inputStream.readAllBytes();
+            programSize += fileBytes.length;
         }
     }
 
     public void secondStep(File[] files, Tables[] moduleTables) throws IOException {
         int programSize = 0;
-        File linkedProgram = new File("linkedProgram.txt");
-        linkedProgram.createNewFile();
-        FileWriter output_linkedProgram = new FileWriter(linkedProgram);
+        OutputStream linkedProgram = new FileOutputStream("linkedProgram.bin");
 
         for (int i = 0; i < files.length; i++) {
             String moduleFileName = files[i].getName().split("\\.")[0] + ".obj";
             File moduleFile = new File(moduleFileName);
-            Scanner sc = new Scanner(moduleFile);
-            StringBuilder moduleCode = new StringBuilder(sc.nextLine());
-
+            FileInputStream inputStream = new FileInputStream(moduleFile);
+            byte[] moduleBytes = inputStream.readAllBytes();
             Tables tables = moduleTables[i];
             HashMap<String, UseTableEntry> moduleUseTable = tables.getUseTable();
 
             for ( Map.Entry<String, UseTableEntry> entry : moduleUseTable.entrySet() ) {
                 UseTableEntry useTableEntry = entry.getValue();
                 short value = (short) (globalSymbolTable.getEntry(useTableEntry.getLabel()).getValue() + programSize);
-                String binaryValue = Integer.toBinaryString((1 << 16) | value).substring( 1 );
+                byte[] valueBytes = new byte[2];
+                valueBytes[0] = (byte) (value & 0xff);
+                valueBytes[1] = (byte)((value >> 8) & 0xff);
                 ArrayList<Short> occurrences = useTableEntry.getOccurrences();
 
                 for (int j = 0; j < occurrences.size(); j++) {
                     Short occurrence = occurrences.get(j);
-                    System.out.println("Antes de substituir: " + moduleCode.toString());
-                    System.out.println("Substituindo pelo valor: " + value);
-                    System.out.println("Substituindo pelo valor em binario: " + binaryValue);
-                    System.out.println("Substituindo no endereco: " + occurrence);
-                    moduleCode.replace(occurrence, occurrence + 16, binaryValue);
-                    System.out.println("Depois de substituir: " + moduleCode.toString());
-
+                    moduleBytes[occurrence] = valueBytes[0];
+                    moduleBytes[occurrence + 1] = valueBytes[1];
                 }
             }
 
-            output_linkedProgram.write(moduleCode.toString());
-            programSize += moduleCode.length();
-            sc.close();
+            programSize += moduleBytes.length;
+            linkedProgram.write(moduleBytes);
         }
 
-        output_linkedProgram.close();
+        linkedProgram.close();
     }
 }

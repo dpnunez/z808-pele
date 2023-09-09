@@ -7,7 +7,7 @@ import main.Registers;
 
 public class READDirect extends Instruction {
     public READDirect() {
-        super("READ.D", (short) 0x12, 3);
+        super("READ.D", (byte) 0x12, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         short value = memory.getCell(op);

@@ -8,7 +8,7 @@ import main.Registers;
 public class SUBRegister extends Instruction {
 
     public SUBRegister() {
-        super("SUB.R", (short) 0x2B, 2);
+        super("SUB.R", (byte) 0x2B, 2);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         Register regSource = registers.getRegisterByOpcode(op);

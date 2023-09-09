@@ -8,7 +8,7 @@ import main.Registers;
 
 public class NOTRegister extends Instruction {
 
-    public NOTRegister() { super("NOT.R", (short) 0xF8, 2); }
+    public NOTRegister() { super("NOT.R", (byte) 0xF8, 2); }
 
     public void execute(Registers registers, Memory memory, Short op) {
         // Memory will not be used in this instruction

@@ -1,3 +1,4 @@
+/*
 package main;
 
 import java.util.Scanner;
@@ -334,3 +335,4 @@ public class Sandbox {
         System.out.println(vm.getCPU().getRegisters());
     }
 }
+*/

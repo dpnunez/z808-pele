@@ -3,9 +3,9 @@ package main;
 import Assembler.Assembler;
 import Assembler.Tables;
 import Linker.Linker;
+//import Macro.MacroProcessor;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -13,6 +13,7 @@ public class VirtualMachine {
     private final String name;
     private final CPU cpu;
     private final Memory memory;
+    //private final MacroProcessor macro;
     private final Assembler asm;
     private final Linker linker;
     private File[] codeFile;
@@ -21,6 +22,7 @@ public class VirtualMachine {
         this.cpu = c;
         this.memory = memory;
         this.name = name;
+        //this.macro = new MacroProcessor();
         this.asm = new Assembler();
         this.linker = new Linker();
     }
@@ -68,13 +70,15 @@ public class VirtualMachine {
 
 
         //ToDo: Processa macros
-
+        //for (int i = 0; i < this.codeFile.length; i++)
+            //macro.run(codeFile[i]);
 
         // Monta
         System.out.println("Montando...");
         for (int i = 0; i < this.codeFile.length; i++) {
             // Get file content
-            File file = this.codeFile[i];
+            //File file = this.codeFile[i];
+            File file = new File(codeFileName[i] + ".asm");
             Scanner sc = new Scanner(file);
             StringBuilder code = new StringBuilder();
 
@@ -91,7 +95,7 @@ public class VirtualMachine {
         linker.run(codeFile, tables);
 
         //File file = new File(codeFileName[0] + ".obj");
-        File file = new File("linkedProgram.txt");
+        File file = new File("linkedProgram.bin");
         System.out.println("Executando..." + file.getName());
         cpu.run(file);
     }

@@ -8,7 +8,7 @@ import main.Registers;
 public class MOVDirect extends Instruction {
 
         public MOVDirect() {
-            super("MOV.D", (short) 0xA1, 3); }
+            super("MOV.D", (byte) 0xA1, 3); }
         public void execute(Registers registers, Memory memory, Short op) {
             // op is a register id
             // value in register is a cell position in memory

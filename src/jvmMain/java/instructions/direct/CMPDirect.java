@@ -7,7 +7,7 @@ import main.Registers;
 
 public class CMPDirect extends Instruction {
     public CMPDirect() {
-        super("CMP.D", (short) 0x3D, 3);
+        super("CMP.D", (byte) 0x3D, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         short value = memory.getCell(op);

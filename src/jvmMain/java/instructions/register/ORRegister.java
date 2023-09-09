@@ -8,7 +8,7 @@ import main.Registers;
 public class ORRegister extends Instruction {
 
     public ORRegister() {
-        super("OR.R", (short) 0x0B, 2);
+        super("OR.R", (byte) 0x0B, 2);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         Register regDestination = registers.getRegisterByName("AX");

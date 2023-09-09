@@ -8,10 +8,10 @@ import instructions.imediate.*;
 import java.util.HashMap;
 
 public class Instructions {
-    private final HashMap<Short, Instruction> instructions;
+    private final HashMap<Byte, Instruction> instructions;
 
     public Instructions() {
-        HashMap<Short, Instruction> i = new HashMap<>();
+        HashMap<Byte, Instruction> i = new HashMap<>();
         // MOV
         Instruction MOVReg = new MOVRegister();
         i.put(MOVReg.getOpcode(), MOVReg);
@@ -118,13 +118,13 @@ public class Instructions {
         this.instructions = i;
     }
 
-    public Instruction getInstructionByOpcode(Short opcode) {
+    public Instruction getInstructionByOpcode(byte opcode) {
         return instructions.get(opcode);
     }
 
     public Instruction getInstructionByName(String name) {
         // ToDo: refactor to use get
-        for (HashMap.Entry<Short, Instruction> entry : instructions.entrySet()) {
+        for (HashMap.Entry<Byte, Instruction> entry : instructions.entrySet()) {
             if (entry.getValue().getName().equals(name)) {
                 return entry.getValue();
             }
@@ -132,14 +132,14 @@ public class Instructions {
         return null;
     }
 
-    public HashMap<Short, Instruction> getInstructions() {
+    public HashMap<Byte, Instruction> getInstructions() {
         return instructions;
     }
 
     @Override
     public String toString() {
         String result = "";
-        for (HashMap.Entry<Short, Instruction> entry : instructions.entrySet()) {
+        for (HashMap.Entry<Byte, Instruction> entry : instructions.entrySet()) {
             result += entry.getValue().getName() + ": " + entry.getValue().getOpcode() + "\n";
         }
         return result;

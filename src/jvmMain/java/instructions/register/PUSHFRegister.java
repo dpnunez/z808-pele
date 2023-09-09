@@ -8,7 +8,7 @@ import main.Registers;
 public class PUSHFRegister extends Instruction {
 
     public PUSHFRegister() {
-        super("PUSHF.R", (short) 0x9C, 2);
+        super("PUSHF.R", (byte) 0x9C, 2);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         Register regDestination = registers.getRegisterByName("SP");

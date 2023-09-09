@@ -7,7 +7,7 @@ import main.Registers;
 
 public class SUBDirect extends Instruction {
     public SUBDirect() {
-        super("SUB.D", (short) 0x25, 3);
+        super("SUB.D", (byte) 0x25, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         short valueSource = memory.getCell(op);

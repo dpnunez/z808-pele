@@ -7,7 +7,7 @@ import main.Registers;
 
 public class CMPImediate extends Instruction {
     public CMPImediate() {
-        super("CMP.I", (short) 0x3C, 3);
+        super("CMP.I", (byte) 0x3C, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         Register regDestination = registers.getRegisterByName("AX");
