@@ -5,7 +5,6 @@ public class Memory {
     public final int BLOCK_SIZE = 16;
     private short[] cells;
 
-    // ToDo: implement block_size cells relations
     public Memory(int memorySize) {
         MEMORY_SIZE_BYTES = memorySize;
         cells = new short[MEMORY_SIZE_BYTES];
@@ -22,6 +21,10 @@ public class Memory {
 
     public void setCell(int i, short value) {
         cells[i] = value;
+    }
+
+    public short[] getCells() {
+        return cells;
     }
 
     public void printMemory() {

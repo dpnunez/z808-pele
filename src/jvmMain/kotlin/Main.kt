@@ -120,7 +120,7 @@ fun App() {
         Box(Modifier.padding(paddingValues)) {
             Row(modifier = Modifier.padding(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(16.dp) ) {
                 Box(modifier = Modifier.weight(1f)) {
-                    CodeEditor(vm = virtualMachine, text = currentText, onValueChange = ::handleChangeTextEditor)
+                    MemoryPreview(vm = virtualMachine, text = currentText, onValueChange = ::handleChangeTextEditor)
                 }
 
                 Box(modifier = Modifier.width(400.dp)) {
