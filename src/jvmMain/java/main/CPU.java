@@ -3,8 +3,8 @@ package main;
 import instructions.Instruction;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class CPU {
     private final Registers registers;
@@ -31,37 +31,33 @@ public class CPU {
         return instructions;
     }
 
-    public void execute(String instruction) {
-        // first 8 bits are opcode
-        // next n bits are operand
-        // n is determined by instruction
-
-        Short opcode = Short.parseShort(instruction.substring(0, 8), 2);
-        Short operand = Short.parseShort(instruction.substring(8), 2);
-        Instruction i = instructions.getInstructionByOpcode(opcode);
-
-        System.out.println("Executing instruction: " + i.getName() + " with operand: " + operand);
-        i.execute(registers, memory, operand);
-    }
-
-    public void run(File file) throws FileNotFoundException {
-        Scanner sc = new Scanner(file);
-        StringBuilder code = new StringBuilder();
-
+    public void run(File file) throws IOException {
+        FileInputStream code = new FileInputStream(file);
+        byte[] codeBytes = code.readAllBytes();
         Register IP = registers.getRegisterByName("IP");
         IP.setValue((short) 0);
 
-        // ToDo: refatorar para evitar os 2 loops
-        while (sc.hasNextLine())
-            code.append(sc.nextLine());
-        while (IP.getValue() < code.length()) {
-            int address = IP.getValue();
-            String opcode = code.substring(address, address + 8);
-            int instructionSize = instructions.getInstructionByOpcode(Short.parseShort(opcode, 2)).getSize() * 8; // Covert to bits
-            String instruction = code.substring(address, address + instructionSize);
-            execute(instruction);
-            if (address == IP.getValue()) {
-                IP.incrementValue((short) instructionSize);
+        while (IP.getValue() < codeBytes.length) {
+            Instruction i = instructions.getInstructionByOpcode(codeBytes[IP.getValue()]);
+            IP.setValue((short) (IP.getValue() + i.getSize()));
+            switch(i.getSize()) {
+                case 1:
+                    short op1 = (short) codeBytes[IP.getValue() - 1];
+                    i.execute(registers, memory, op1);
+                    System.out.println("Executing instruction: " + i.getName());
+                    break;
+
+                case 2:
+                    short op2 = (short) codeBytes[IP.getValue() - 1];
+                    i.execute(registers, memory, op2);
+                    System.out.println("Executing instruction: " + i.getName() + " with operand: " + codeBytes[IP.getValue() - 1]);
+                    break;
+
+                case 3:
+                    short op3 = (short) ((codeBytes[IP.getValue() - 1] << 8) | codeBytes[IP.getValue() - 2]);
+                    i.execute(registers, memory, op3);
+                    System.out.println("Executing instruction: " + i.getName() + " with operand: " + op3);
+                    break;
             }
         }
     }

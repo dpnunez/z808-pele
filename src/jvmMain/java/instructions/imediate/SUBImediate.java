@@ -7,7 +7,7 @@ import main.Registers;
 
 public class SUBImediate extends Instruction {
     public SUBImediate() {
-        super("SUB.I", (short) 0x24, 3);
+        super("SUB.I", (byte) 0x24, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         Register regDestination = registers.getRegisterByName("AX");

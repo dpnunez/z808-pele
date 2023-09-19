@@ -7,7 +7,7 @@ import main.Registers;
 
 public class CALLImediate extends Instruction {
     public CALLImediate() {
-        super("CALL.I", (short) 0xE8, 3);
+        super("CALL.I", (byte) 0xE8, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         Register regDestination = registers.getRegisterByName("SP");

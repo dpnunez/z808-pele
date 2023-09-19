@@ -7,7 +7,7 @@ import main.Registers;
 
 public class JMPImediate extends Instruction {
     public JMPImediate() {
-        super("JMP.I", (short) 0xEA, 3);
+        super("JMP.I", (byte) 0xEA, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         Register regDestination = registers.getRegisterByName("IP");

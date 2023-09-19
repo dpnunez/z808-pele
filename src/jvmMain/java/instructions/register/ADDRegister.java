@@ -9,7 +9,7 @@ import main.Registers;
 public class ADDRegister extends Instruction {
 
     public ADDRegister() {
-        super("ADD.R", (short) 0x03, 2);
+        super("ADD.R", (byte) 0x03, 2);
     }
 
     public void execute(Registers registers, Memory memory, Short op) {

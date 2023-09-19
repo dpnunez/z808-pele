@@ -7,7 +7,7 @@ import main.Registers;
 
 public class ANDDirect extends Instruction {
     public ANDDirect() {
-        super("AND.D", (short) 0x25, 3);
+        super("AND.D", (byte) 0x25, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         short value = memory.getCell(op);

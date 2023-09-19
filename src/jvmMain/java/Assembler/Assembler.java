@@ -7,15 +7,17 @@ import Assembler.pseudoInstructions.Segment;
 import instructions.Instruction;
 import main.Instructions;
 
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Assembler {
     private final HashMap<String, Instruction> instructions;
-//    private final HashMap<String, PseudoInstructions>
+    //    private final HashMap<String, PseudoInstructions>
     private final PseudoInstructions pseudoInstructions;
     // list PseudoInstructions;
     private final LinkerDirectives linkerDirectives;
@@ -24,16 +26,13 @@ public class Assembler {
     public Assembler() {
         this.instructions = new HashMap<>();
         Instructions i = new Instructions();
-        PseudoInstructions p = new PseudoInstructions();
-
         // Adicionar as intruções suportadas
-        for (Map.Entry<Short,Instruction> instruction : i.getInstructions().entrySet()) {
+        for (Map.Entry<Byte, Instruction> instruction : i.getInstructions().entrySet()) {
             this.instructions.put(instruction.getValue().getName(), instruction.getValue());
         }
-
         // Adicionar as pseudo_instrucoes suportadas
-        pseudoInstructions = new PseudoInstructions();
-
+        this.pseudoInstructions = new PseudoInstructions();
+        // Adicionar as diretivas de linkagem suportadas
         this.linkerDirectives = new LinkerDirectives();
     }
 
@@ -133,7 +132,7 @@ public class Assembler {
                     throw new RuntimeException("Instruction " + mnemonic + " not supported");
                 } else {
                     Instruction instruction = instructions.get(mnemonic);
-                    PC += instruction.getSize() * 8;
+                    PC += instruction.getSize();
                 }
             }
 
@@ -168,7 +167,7 @@ public class Assembler {
             // Abrir explorador de arquivos para escolher o nome e o local de onde salvar o arquivo
 
             //Passo um: criar arquivo
-            FileWriter program = new FileWriter(fileName+".obj");
+            OutputStream output = new FileOutputStream(fileName + ".obj");
 
 
             //Passo dois: gerar arquivo em binário
@@ -199,9 +198,10 @@ public class Assembler {
                     }
                 } else{
                     Instruction instruction = instructions.get(mnemonic);
-                    short opcode = instruction.getOpcode();
-                    short operand1;
+                    byte opcode = instruction.getOpcode();
+                    byte bytesToWrite[] = new byte[2];
                     int instructionSize = instruction.getSize();
+                    short operandToWrite;
                     boolean org = false;
 
                     // teste para ver se não é um numero
@@ -224,31 +224,34 @@ public class Assembler {
                     }
 
                     // escrever opcode no arquivo em binário
-                    program.write(Integer.toBinaryString((1 << 8) | opcode).substring( 1 ));
+                    output.write(opcode);
 
 
                     // instrução com um operando
                     if(instructionSize > 1) {
                         if(instructionSize == 2) {
                             // escrever registrador no arquivo
-                            operand1 = Short.parseShort(operand);
-                            program.write(Integer.toBinaryString((1 << 8) | operand1).substring( 1 ));
+                            output.write(Byte.parseByte(operand));
                         } else {
                             if(tables.isSymbolInST(operand)) {
                                 if(tables.isSymbolInUT(operand))
-                                    tables.newUseTableEntryOccurrence(operand, (short) (PC + 8));
+                                    tables.newUseTableEntryOccurrence(operand, (short) (PC + 1));
                                 // escrever valor da tabela no arquivo
-                                operand1 = tables.getSymbolTableEntry(operand).getValue();
-                                program.write(Integer.toBinaryString((1 << 16) | operand1).substring( 1 ));
+                                operandToWrite = tables.getSymbolTableEntry(operand).getValue();
+                                bytesToWrite[0] = (byte) (operandToWrite & 0xff);
+                                bytesToWrite[1] = (byte) ((operandToWrite >> 8) & 0xff);
+                                output.write(bytesToWrite);
                             } else {
                                 // escrever operando no arquivo
-                                operand1 = Short.parseShort(operand);
-                                program.write(Integer.toBinaryString((1 << 16) | operand1).substring( 1 ));
+                                operandToWrite = Short.parseShort(operand);
+                                bytesToWrite[0] = (byte) (operandToWrite & 0xff);
+                                bytesToWrite[1] = (byte) ((operandToWrite >> 8) & 0xff);
+                                output.write(bytesToWrite);
                             }
                         }
                     }
                     if (!org){
-                        PC += instruction.getSize() * 8;
+                        PC += instruction.getSize();
                     }
                 }
                 lineInterpreter.reset();
@@ -284,7 +287,7 @@ public class Assembler {
                 }
             }
 
-            program.close();
+            output.close();
         } catch (IOException ie) {
             System.out.println("An error occurred.");
         }

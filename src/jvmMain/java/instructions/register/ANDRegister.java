@@ -8,7 +8,7 @@ import main.Registers;
 public class ANDRegister extends Instruction {
 
     public ANDRegister() {
-        super("AND.R", (short) 0x23, 2);
+        super("AND.R", (byte) 0x23, 2);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         Register regDestination = registers.getRegisterByName("AX");

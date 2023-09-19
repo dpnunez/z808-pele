@@ -7,7 +7,7 @@ import main.Registers;
 
 public class CALLDirect extends Instruction {
     public CALLDirect() {
-        super("CALL.D", (short) 0xE9, 3);
+        super("CALL.D", (byte) 0xE9, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         short value = memory.getCell(op);

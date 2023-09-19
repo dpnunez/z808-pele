@@ -8,7 +8,7 @@ import main.Registers;
 public class STORERegister extends Instruction {
 
     public STORERegister() {
-        super("STORE", (short) 0x07, 3);
+        super("STORE", (byte) 0x07, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         Register regSource = registers.getRegisterByName("AX");

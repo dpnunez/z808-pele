@@ -7,7 +7,7 @@ import main.Registers;
 
 public class JNZDirect extends Instruction {
     public JNZDirect() {
-        super("JNZ.D", (short) 0x75, 3);
+        super("JNZ.D", (byte) 0x75, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         short value = memory.getCell(op);

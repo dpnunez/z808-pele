@@ -7,7 +7,7 @@ import main.Registers;
 
 public class ORImediate extends Instruction {
     public ORImediate() {
-        super("OR.I", (short) 0x0C, 3);
+        super("OR.I", (byte) 0x0C, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         Register regDestination = registers.getRegisterByName("AX");

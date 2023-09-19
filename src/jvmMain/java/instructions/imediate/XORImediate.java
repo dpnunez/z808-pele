@@ -7,7 +7,7 @@ import main.Registers;
 
 public class XORImediate extends Instruction {
     public XORImediate() {
-        super("XOR.I", (short) 0x35, 3);
+        super("XOR.I", (byte) 0x35, 3);
     }
     public void execute(Registers registers, Memory memory, Short op) {
         Register regDestination = registers.getRegisterByName("AX");
