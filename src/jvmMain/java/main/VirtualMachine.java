@@ -3,7 +3,7 @@ package main;
 import Assembler.Assembler;
 import Assembler.Tables;
 import Linker.Linker;
-//import Macro.MacroProcessor;
+import Macro.MacroProcessor;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +13,7 @@ public class VirtualMachine {
     private final String name;
     private final CPU cpu;
     private final Memory memory;
-    //private final MacroProcessor macro;
+    private final MacroProcessor macro;
     private final Assembler asm;
     private final Linker linker;
     private File[] codeFile;
@@ -22,7 +22,7 @@ public class VirtualMachine {
         this.cpu = c;
         this.memory = memory;
         this.name = name;
-        //this.macro = new MacroProcessor();
+        this.macro = new MacroProcessor();
         this.asm = new Assembler();
         this.linker = new Linker();
     }
@@ -69,9 +69,9 @@ public class VirtualMachine {
         }
 
 
-        //ToDo: Processa macros
-        //for (int i = 0; i < this.codeFile.length; i++)
-            //macro.run(codeFile[i]);
+        // Processa macros
+        for (int i = 0; i < this.codeFile.length; i++)
+            macro.run(codeFile[i]);
 
         // Monta
         System.out.println("Montando...");
