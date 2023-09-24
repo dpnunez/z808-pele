@@ -12,7 +12,7 @@ public class Memory {
 
 
     public Memory() {
-        this(64);
+        this(8192);
     }
 
     public short getCell(int i) {
