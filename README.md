@@ -16,7 +16,6 @@ Para executar o projeto, siga estas etapas:
    git clone https://github.com/dpnunez/z808-pele.git
    ```
 
-   Substitua `seu-usuario` pelo seu nome de usuário do GitHub ou use o URL do repositório fornecido.
 
 2. Abra o IntelliJ IDEA.
 
