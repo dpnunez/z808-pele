@@ -31,32 +31,32 @@ public class CPU {
         return instructions;
     }
 
-    public void run(File file) throws IOException {
-        FileInputStream code = new FileInputStream(file);
-        byte[] codeBytes = code.readAllBytes();
+    public void run(int endAddress) throws IOException {
         Register IP = registers.getRegisterByName("IP");
         IP.setValue((short) 0);
 
-        while (IP.getValue() < codeBytes.length) {
-            Instruction i = instructions.getInstructionByOpcode(codeBytes[IP.getValue()]);
+        while (IP.getValue() < endAddress) {
+            Instruction i = instructions.getInstructionByOpcode((byte) memory.getCell(IP.getValue()));
             IP.setValue((short) (IP.getValue() + i.getSize()));
+            short op;
             switch(i.getSize()) {
                 case 1:
-                    short op1 = (short) codeBytes[IP.getValue() - 1];
-                    i.execute(registers, memory, op1);
+                    op = memory.getCell(IP.getValue() - 1);
+                    i.execute(registers, memory, op);
                     System.out.println("Executing instruction: " + i.getName());
                     break;
 
                 case 2:
-                    short op2 = (short) codeBytes[IP.getValue() - 1];
-                    i.execute(registers, memory, op2);
-                    System.out.println("Executing instruction: " + i.getName() + " with operand: " + codeBytes[IP.getValue() - 1]);
+                    op = memory.getCell(IP.getValue() - 1);
+                    i.execute(registers, memory, op);
+                    System.out.println("Executing instruction: " + i.getName() + " with operand: " + op);
                     break;
 
                 case 3:
-                    short op3 = (short) ((codeBytes[IP.getValue() - 1] << 8) | codeBytes[IP.getValue() - 2]);
-                    i.execute(registers, memory, op3);
-                    System.out.println("Executing instruction: " + i.getName() + " with operand: " + op3);
+                    op = (short) (memory.getCell(IP.getValue() - 1) << 8);
+                    op |= memory.getCell(IP.getValue() - 2);
+                    i.execute(registers, memory, op);
+                    System.out.println("Executing instruction: " + i.getName() + " with operand: " + op);
                     break;
             }
         }

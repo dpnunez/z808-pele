@@ -53,6 +53,8 @@ public class Tables {
         useTable.put(label, new UseTableEntry(label, signal));
     }
 
+    public void newSymbolTableOccurrence(String label, Short value) { symbolTable.get(label).updateOccurrences(value); }
+
     public void newUseTableEntryOccurrence(String label, Short value) {
         useTable.get(label).updateOccurrences(value);
     }

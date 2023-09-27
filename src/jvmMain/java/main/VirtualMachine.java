@@ -92,12 +92,12 @@ public class VirtualMachine {
             tables[i] = this.assemble(code.toString(), fileName);
         }
         // Linka
-        linker.run(codeFile, tables);
+        int endAddress = linker.run(codeFile, tables, memory);
 
         //File file = new File(codeFileName[0] + ".obj");
-        File file = new File("linkedProgram.bin");
-        System.out.println("Executando..." + file.getName());
-        cpu.run(file);
+        //File file = new File("linkedProgram.bin");
+        //System.out.println("Executando..." + file.getName());
+        cpu.run(endAddress);
     }
 
     public Memory getMemory() {

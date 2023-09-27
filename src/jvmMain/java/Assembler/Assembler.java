@@ -234,6 +234,7 @@ public class Assembler {
                             output.write(Byte.parseByte(operand));
                         } else {
                             if(tables.isSymbolInST(operand)) {
+                                tables.newSymbolTableOccurrence(operand, (short) (PC + 1));
                                 if(tables.isSymbolInUT(operand))
                                     tables.newUseTableEntryOccurrence(operand, (short) (PC + 1));
                                 // escrever valor da tabela no arquivo
